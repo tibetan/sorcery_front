@@ -2,13 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './shop-header.sass';
+import {RootState} from "../../store";
+import {connect} from "react-redux";
+import { ICart } from '../../models/i-cart';
 
 interface ShopHeaderProps {
-  numItems: number;
+  cartItems: ICart[];
   total: number;
 }
 
-const ShopHeader = ({ numItems, total }: ShopHeaderProps) => {
+const ShopHeader = ({ cartItems, total }: ShopHeaderProps) => {
+  const totalItems = cartItems.reduce((sum, item) => sum + item.count, 0);
+
   return (
     <header className="shop-header row">
       <Link to="/">
@@ -17,11 +22,20 @@ const ShopHeader = ({ numItems, total }: ShopHeaderProps) => {
       <Link to="/cart">
         <div className="shopping-cart">
           <i className="cart-icon fa fa-shopping-cart" />
-          {numItems} items (${total})
+          {totalItems} items (${total})
         </div>
       </Link>
     </header>
   );
 };
 
-export default ShopHeader;
+const mapStateToProps = ({ cartReducer: { cartItems, orderTotal } }: RootState) => {
+  return {
+    cartItems: cartItems,
+    total: orderTotal,
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopHeader);

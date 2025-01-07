@@ -56,6 +56,10 @@ const updateCartItem = (book: IBook, item: ICart, quantity: number) => {
   };
 };
 
+const updateOrderTotal = (cartItems: ICart[]): number => {
+  return cartItems.reduce((sum, item) => sum + item.total, 0);
+};
+
 const updateOrder = (
   state: CartState,
   bookId: number,
@@ -63,6 +67,7 @@ const updateOrder = (
 ) => {
   const { books, cartItems } = state;
   const book = books.find(({ id }) => id === bookId);
+
   if (!book) {
     console.warn(`Book with id ${bookId} not found`);
     return;
@@ -73,6 +78,7 @@ const updateOrder = (
 
   const newItem = updateCartItem(book, item, quantity);
   state.cartItems = updateCartItems(cartItems, newItem, itemIndex);
+  state.orderTotal = state.cartItems && updateOrderTotal(state.cartItems);
 };
 
 export const cartSlice = createSlice({

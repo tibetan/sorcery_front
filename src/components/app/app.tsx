@@ -9,7 +9,7 @@ import './app.sass';
 const App = () => {
   return (
     <main role="main" className="app">
-      <ShopHeader numItems={5} total={210}/>
+      <ShopHeader />
       <Routes>
         <Route
           path="/"
