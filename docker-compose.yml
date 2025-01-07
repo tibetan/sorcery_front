@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   react-app:
     container_name: react_sorcery
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker/ui/Dockerfile
     ports:
       - ${PORT_HOST_MACHINE}:3000
     volumes:
