@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 import { IBook } from '../../models/i-book';
 import './book-list-item.sass';
@@ -19,11 +20,13 @@ const BookListItem = ({ book, onAddedToCart }: BookListItemProps) => {
         <span className="book-title">{title}</span>
         <div className="book-author">{author}</div>
         <div className="book-price">${price}</div>
-        <button
+        <Button
+          variant="contained"
+          color="primary"
           onClick={onAddedToCart}
           className="btn btn-info add-to-cart">
           Add to cart
-        </button>
+        </Button>
       </div>
     </div>
   );

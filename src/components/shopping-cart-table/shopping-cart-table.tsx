@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from '@mui/material/Button';
 
 import {RootState} from "../../store";
 import { addBookToCart, removeBookFromCart, removeAllBooksFromCart } from '../../actions/cart-actions';
@@ -26,21 +27,25 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDelete, onDecrease }: S
         <td>{count}</td>
         <td>${total}</td>
         <td>
-          <button
+          {/*<Button variant="outlined">Outlined</Button>*/}
+          <Button
+            variant="outlined"
             onClick={() => onDelete(id)}
             className="btn btn-outline-danger btn-sm float-right">
             Delete
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="outlined"
             onClick={() => onIncrease(id)}
             className="btn btn-outline-success btn-sm float-right">
             +
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="outlined"
             onClick={() => onDecrease(id)}
             className="btn btn-outline-warning btn-sm float-right">
             -
-          </button>
+          </Button>
         </td>
       </tr>
     );
