@@ -1,4 +1,4 @@
-export interface IApiProduct {
+interface IApiProduct {
   id: number;
   name: string;
   slug: string;
@@ -10,3 +10,5 @@ export interface IApiProduct {
   created_at: string;
   updated_at: string;
 }
+
+export default IApiProduct;

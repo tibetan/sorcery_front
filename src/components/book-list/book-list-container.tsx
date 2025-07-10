@@ -8,11 +8,11 @@ import { addBookToCart } from '../../actions/cart-actions';
 import BookList from './book-list';
 import Spinner from '../spinner/spinner';
 import ErrorIndicator from '../error-indicator/error-indicator';
-import withBookstoreService from '../hoc/with-bookstore-service';
+import withApiService from '../hoc/with-api-service';
 
 import compose from '../../utils/compose';
 
-import { IBookListProps } from '../../models/i-book-list-props';
+import { IBookListProps } from '../../types/book';
 
 class BookListContainer extends Component<IBookListProps, object> {
 
@@ -41,13 +41,13 @@ const mapStateToProps = ({ bookReducer: { books, loading, error }}: RootState) =
 
 const mapDispatchToProps = (
   dispatch: AppDispatch,
-  { bookstoreService }: { bookstoreService: IBookListProps['bookstoreService'] }
+  { apiService }: { apiService: IBookListProps['apiService'] }
 ) => ({
-  fetchBooks: fetchBooks(bookstoreService, dispatch),
+  fetchBooks: fetchBooks(apiService, dispatch),
   onAddedToCart: (id: number) => dispatch(addBookToCart(id)),
 });
 
 export default compose(
-  withBookstoreService(),
+  withApiService(),
   connect(mapStateToProps, mapDispatchToProps)
 )(BookListContainer as React.ComponentType<unknown>);

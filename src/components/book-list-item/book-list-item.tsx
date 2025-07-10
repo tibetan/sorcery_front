@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 
-import { IBook } from '../../models/i-book';
+import { IBook } from '../../types/book';
+
 import './book-list-item.sass';
 
 interface BookListItemProps {

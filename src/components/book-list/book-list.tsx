@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BookListItem from '../book-list-item/book-list-item';
-import { IBook } from '../../models/i-book';
+import { IBook } from '../../types/book';
 
 import './book-list.sass';
 

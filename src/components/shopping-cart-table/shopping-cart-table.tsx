@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import {RootState} from "../../store";
 import { addBookToCart, removeBookFromCart, removeAllBooksFromCart } from '../../actions/cart-actions';
 
-import { ICart } from "../../models/i-cart";
+import { ICart } from "../../types/cart";
 
 import './shopping-cart-table.sass';
 

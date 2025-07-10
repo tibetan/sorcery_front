@@ -1,7 +1,7 @@
-import {IBook} from "./i-book";
-import {TError} from "../types/t-error";
+import { IBook } from "./";
+import { TError } from "../error";
 
-export interface IBookListProps {
+interface IBookListProps {
   // Redux Props
   books: IBook[]; // Список книг
   loading: boolean; // Индикатор загрузки
@@ -12,7 +12,9 @@ export interface IBookListProps {
   onAddedToCart: (id: number) => void; // Метод для добавления книги в корзину
 
   // Own Props
-  bookstoreService: {
+  apiService: {
     getBooks: () => Promise<IBook[]>; // Сервис для получения книг
   };
 }
+
+export default IBookListProps;

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { bookSlice } from './book-slice';
-import { ICart } from '../models/i-cart';
-import { IBook } from '../models/i-book';
+import { ICart } from '../types/cart';
+import { IBook } from '../types/book';
 
 // Определяем тип для состояния
 interface CartState {

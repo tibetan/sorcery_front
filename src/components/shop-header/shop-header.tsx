@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './shop-header.sass';
 import {RootState} from "../../store";
 import {connect} from "react-redux";
-import { ICart } from '../../models/i-cart';
+import { ICart } from '../../types/cart';
 
 interface ShopHeaderProps {
   cartItems: ICart[];
@@ -17,7 +17,7 @@ const ShopHeader = ({ cartItems, total }: ShopHeaderProps) => {
   return (
     <header className="shop-header row">
       <Link to="/">
-        <div className="logo text-dark">ReStore</div>
+        <div className="logo text-dark">Sorcery</div>
       </Link>
       <Link to="/cart">
         <div className="shopping-cart">

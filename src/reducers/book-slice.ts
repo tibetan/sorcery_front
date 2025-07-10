@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IBook } from '../models/i-book';
-import { TError } from '../types/t-error';
+import { IBook } from '../types/book';
+import { TError } from '../types/error';
 
 // Определяем тип для состояния
 interface BookState {
