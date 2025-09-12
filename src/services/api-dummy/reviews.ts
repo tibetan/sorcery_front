@@ -34,7 +34,7 @@ const transformReview = (review: IApiReview): IReview => ({
     productId: review.product_id,
     product: review.product ? transformProduct(review.product) : null,
     rating: review.rating,
-    description: '',
+    description: review.description,
     createdAt: review.created_at,
     updatedAt: review.updated_at,
 });

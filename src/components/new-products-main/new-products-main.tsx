@@ -11,17 +11,20 @@ interface ProductListProps {
 
 const NewProductsMain = ({ products }: ProductListProps) => {
   return (
-    <ul className="new-products-main">
-        {
-            products.map((product: IProduct) => {
-                return (
-                  <li key={product.id}>
-                      <NewProductsMainItem product={product} />
-                  </li>
-                );
-            })
-        }
-    </ul>
+      <div>
+          Products Section:
+          <ul className="new-products-main">
+              {
+                  products.map((product: IProduct) => {
+                      return (
+                          <li key={product.id}>
+                              <NewProductsMainItem product={product} />
+                          </li>
+                      );
+                  })
+              }
+          </ul>
+      </div>
   );
 }
 
