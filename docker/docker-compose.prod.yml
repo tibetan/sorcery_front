@@ -1,0 +1,9 @@
+services:
+    react-app:
+        container_name: react_sorcery_prod
+        build:
+            context: ..
+            dockerfile: docker/ui/Dockerfile.prod
+        ports:
+            - ${PORT_HOST_MACHINE_PROD}:8081
+        restart: always
