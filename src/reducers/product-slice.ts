@@ -1,52 +1,27 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
-import { Draft } from 'immer';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchProducts } from '../actions/product-actions';
-
-import { IProduct } from '../types/product';
-import { TError } from '../types/error';
-
-// Определяем тип для состояния
 interface ProductState {
-    products: IProduct[];
-    loading: boolean;
-    error: TError;
+    selectedId: number | null;
+    selectedCategory: string | null;
 }
 
-// Начальное состояние
 const initialState: ProductState = {
-  products: [],
-  loading: true,
-  error: null
+    selectedId: null,
+    selectedCategory: null,
 };
 
-export const productSlice = createSlice<
-        ProductState,
-        SliceCaseReducers<ProductState>,
-        'products',
-        {}
-    >({
-    name: 'products',
+const productSlice = createSlice({
+    name: 'product',
     initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-        .addCase(fetchProducts.pending, (state: Draft<ProductState>) => {
-            state.products = [];
-            state.loading = true;
-            state.error = null;
-        })
-        .addCase(fetchProducts.fulfilled, (state: Draft<ProductState>, action) => {
-            state.products = action.payload;
-            state.loading = false;
-            state.error = null;
-        })
-        .addCase(fetchProducts.rejected, (state: Draft<ProductState>, action) => {
-            state.products = [];
-            state.loading = false;
-            state.error = action.payload ?? new Error('Unknown error');
-        });
-    }
+    reducers: {
+        setSelectedId: (state, action: PayloadAction<number | null>) => {
+            state.selectedId = action.payload;
+        },
+        setSelectedCategory: (state, action: PayloadAction<string | null>) => {
+            state.selectedCategory = action.payload;
+        },
+    },
 });
 
+export const { setSelectedId, setSelectedCategory } = productSlice.actions;
 export default productSlice.reducer;

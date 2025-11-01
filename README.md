@@ -1,3 +1,15 @@
+# Итоговый подход
+  
+  RTK Query — для всего, что приходит с сервера и кэшируется автоматически.
+  
+  Slice — только для локального состояния, фильтров, сортировки, UI и временных выбранных данных.
+  
+  Store подключает:
+  
+  slice-редьюсеры (productReducer, cartReducer и т.д.)
+  
+  автоматически все createApi.reducerPath через ApiService
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

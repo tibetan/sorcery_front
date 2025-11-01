@@ -29,12 +29,20 @@ const ShopHeader = ({ cartItems, total }: ShopHeaderProps) => {
   );
 };
 
-const mapStateToProps = ({ cartReducer: { cartItems, orderTotal } }: RootState) => {
-  return {
-    cartItems: cartItems,
-    total: orderTotal,
-  };
+const mapStateToProps = (state: RootState) => {
+    const { cartItems, orderTotal } = state.cartReducer as any;
+    return {
+        cartItems,
+        total: orderTotal,
+    };
 };
+
+// const mapStateToProps = ({ cartReducer: { cartItems, orderTotal } }: RootState) => {
+//   return {
+//     cartItems: cartItems,
+//     total: orderTotal,
+//   };
+// };
 
 const mapDispatchToProps = {};
 

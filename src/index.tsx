@@ -10,13 +10,14 @@ import { setupStore } from './store';
 import ErrorBoundary from './components/error-boundary/error-boundary';
 import { ApiServiceProvider } from './components/api-service-context/api-service-context';
 // import ApiService from './services/api';
-import ApiService from './services/api-dummy';
+// import ApiService from './services/api/dummy';
+import { ApiService } from './services/api';
+
 import App from './components/app/app';
 
 const store = setupStore();
-// const apiService = new ApiService;
 
-const root = createRoot(document.getElementById('root') as HTMLElement);
+const root = createRoot(document.getElementById('root')!);
 root.render(
   <Provider store={store}>
     <ErrorBoundary>

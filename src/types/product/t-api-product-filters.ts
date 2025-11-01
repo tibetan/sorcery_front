@@ -1,2 +1,1 @@
-type TApiProductFilters = Record<string, string | string[]>;
-export default TApiProductFilters;
+export type TApiProductFilters = Record<string, string | string[]>;

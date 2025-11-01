@@ -1,15 +1,7 @@
 import React from 'react';
+import type { TApiService } from '../../types/api-service';
 
-import { IProduct, TApiProductFilters } from '../../types/product';
-import { IBook } from '../../types/book';
-
-type ApiServiceContextType = {
-    getBooks: () => Promise<IBook[]>;
-    getProducts: (filters?: TApiProductFilters) => Promise<IProduct[]>;
-    getProduct: (id: number) => Promise<IProduct>;
-};
-
-const ApiServiceContext = React.createContext<ApiServiceContextType | []>([]);
+export const ApiServiceContext = React.createContext<TApiService | null>(null);
 
 const {
   Provider: ApiServiceProvider,

@@ -11,7 +11,7 @@ else ifeq ($(ENV),prod)
   DC = $(DOCKER_COMPOSE_PROD)
 endif
 
-.PHONY: up build stop restart ps logs clean
+.PHONY: up build down restart ps logs clean bash
 
 # Поднять контейнеры
 up:
@@ -22,11 +22,11 @@ build:
 	$(DC) up -d --build
 
 # Остановить контейнеры
-stop:
+down:
 	$(DC) down
 
 # Перезапуск
-restart: stop up
+restart: down up
 
 # Список контейнеров
 ps:
@@ -41,3 +41,7 @@ clean:
 	$(DOCKER_COMPOSE_DEV) down -v --rmi all
 	$(DOCKER_COMPOSE_PROD) down -v --rmi all
 	docker volume prune -f
+
+# Вход в контейнер (по умолчанию в react-app, можно указать другой через CONTAINER=имя)
+bash:
+	$(DC) exec react-app sh -c "bash || sh"

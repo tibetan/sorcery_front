@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { useProductActions } from '../../actions/products';
 
 import { IProduct } from "../../types/product";
 import NewProductsMainItem from "../new-products-main-item/new-products-main-item";
@@ -10,10 +13,15 @@ interface ProductListProps {
 }
 
 const NewProductsMain = ({ products }: ProductListProps) => {
-  return (
-      <div>
+    const { setSelectedCategory, setSelectedId } = useProductActions();
+    const { selectedCategory, selectedId } = useSelector(
+        (state: RootState) => state.productReducer
+    );
+
+    return (
+      <div className="new-products-main">
           Products Section:
-          <ul className="new-products-main">
+          <ul>
               {
                   products.map((product: IProduct) => {
                       return (
@@ -24,6 +32,27 @@ const NewProductsMain = ({ products }: ProductListProps) => {
                   })
               }
           </ul>
+
+          <div>
+              <button onClick={() => setSelectedCategory('books')}>Books</button>
+              <button onClick={() => setSelectedCategory('toys')}>Toys</button>
+          </div>
+
+          <ul>
+              {products?.map((p) => (
+                  <li key={p.id}>
+                      <span>{p.name}</span>
+                      <button onClick={() => setSelectedId(p.id)}>Select</button>
+                  </li>
+              ))}
+          </ul>
+
+          {selectedId && (
+              <div className="modal">
+                  <h3>Selected product ID: {selectedId}</h3>
+                  <button onClick={() => setSelectedId(null)}>Close</button>
+              </div>
+          )}
       </div>
   );
 }

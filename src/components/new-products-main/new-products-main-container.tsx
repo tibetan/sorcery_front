@@ -1,52 +1,23 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {AppDispatch, RootState} from "../../store";
-import { fetchProducts } from '../../actions/product-actions';
-
-import withApiService from '../hoc/with-api-service';
-import compose from '../../utils/compose';
-
-import { IProductListProps, TApiProductFilters } from "../../types/product";
-
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { ApiService } from '../../services/api';
 import NewProductsMain from './new-products-main';
-import Spinner from "../spinner/spinner";
-import ErrorIndicator from "../error-indicator/error-indicator";
 
-class NewProductsMainContainer extends Component<IProductListProps, object> {
+const { useGetProductsQuery } = ApiService;
 
-    componentDidMount() {
-        this.props.fetchProducts({ status: 'new' });
-        // this.props.fetchProducts({ types: 'ceramic', status: ['new', 'popular'] });
-    }
+export default function NewProductsMainContainer() {
+    const { selectedCategory, selectedId } = useSelector(
+        (state: RootState) => state.productReducer
+    );
 
-    render() {
-        const { products, loading, error, } = this.props;
+    // RTK Query берет данные с сервера, фильтруя по категории
+    const { data: products, isLoading, error } = useGetProductsQuery(
+        selectedCategory ? { category: selectedCategory } : undefined
+    );
 
-        if (loading) {
-            return <Spinner />;
-        }
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading products</div>;
 
-        if (error) {
-            return <ErrorIndicator />;
-        }
-
-        return <NewProductsMain products = {products} />;
-    }
-}
-
-const mapStateToProps = ({ productReducer: { products, loading, error }}: RootState) => {
-    return { products, loading, error };
+    return <NewProductsMain products={products || []} />;
 };
-
-const mapDispatchToProps = (
-    dispatch: AppDispatch,
-    { apiService }: { apiService: IProductListProps['apiService'] }
-) => ({
-    fetchProducts: (filters?: TApiProductFilters) =>
-        dispatch(fetchProducts({ apiService, filters })),
-});
-
-export default compose(
-    withApiService(),
-    connect(mapStateToProps, mapDispatchToProps)
-)(NewProductsMainContainer as React.ComponentType<unknown>);

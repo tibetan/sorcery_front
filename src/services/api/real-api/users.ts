@@ -1,4 +1,4 @@
-import { IApiUser, IUser } from '../../types/user';
+import { IApiUser, IUser } from '../../../types/user';
 import { getResource } from './api-base';
 
 const transformUser = (user: IApiUser): IUser => ({

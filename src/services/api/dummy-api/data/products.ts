@@ -1,6 +1,6 @@
-import { IApiProduct, IProduct } from '../../types/product';
+import { IApiProduct } from "../../../../types/product";
 
-const products: IApiProduct[] = [
+export const products: IApiProduct[] = [
     {
         id: 1,
         name: 'Test product 1',
@@ -36,49 +36,5 @@ const products: IApiProduct[] = [
         sku: 'SKU 3',
         created_at: '2025-04-30T23:31:32.000000Z',
         updated_at: '2025-05-06T23:31:32.000000Z',
-    }
+    },
 ];
-
-const transformProduct = (product: IApiProduct): IProduct => {
-    return {
-        id: product.id,
-        name: product.name,
-        slug: product.slug,
-        price: product.price,
-        shortDescription: product.short_description,
-        description: product.description,
-        additionalInfo: product.additional_info,
-        sku: product.sku,
-        createdAt: product.created_at,
-        updatedAt: product.updated_at,
-    }
-};
-
-const getProducts = (): Promise<IProduct[]> => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const transformed = products.map(transformProduct);
-            resolve(transformed);
-        }, 400);
-    });
-};
-
-const getProduct = (id: number): Promise<IProduct> => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const product = products.find(p => p.id === id);
-            if (!product) {
-                reject(new Error('Product not found'));
-            } else {
-                resolve(transformProduct(product));
-            }
-        }, 300);
-    });
-};
-
-export {
-    products,
-    transformProduct,
-    getProducts,
-    getProduct,
-};

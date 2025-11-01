@@ -1,6 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = {
     entry: './src/index.tsx',
@@ -32,6 +36,14 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './public/index.html',
+        }),
+        new webpack.DefinePlugin({
+            'process.env': Object.keys(process.env)
+                .filter((key) => key.startsWith('REACT_APP_'))
+                .reduce((env, key) => {
+                    env[key] = JSON.stringify(process.env[key]);
+                    return env;
+                }, {}),
         }),
     ],
     devServer: {

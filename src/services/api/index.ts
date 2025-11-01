@@ -1,12 +1,6 @@
-import { getUsers } from './users';
-import { getProducts, getProduct } from './products';
-import { getReviews } from './reviews';
+import RealApiService from './real-api';
+import DummyApiService from './dummy-api';
 
-const apiService = {
-    getUsers,
-    getProducts,
-    getProduct,
-    getReviews,
-};
+const useDummy = process.env.REACT_APP_USE_DUMMY_API === 'true';
 
-export default apiService;
+export const ApiService = useDummy ? DummyApiService : RealApiService;
