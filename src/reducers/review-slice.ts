@@ -1,52 +1,22 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
-import { Draft } from 'immer';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchReviews } from '../actions/review-actions';
-
-import { IReview } from '../types/review';
-import { TError } from '../types/error';
-
-// Определяем тип для состояния
 interface ReviewState {
-    reviews: IReview[];
-    loading: boolean;
-    error: TError;
+    sortedBy: 'author' | 'date' | 'rating' | null;
 }
 
-// Начальное состояние
 const initialState: ReviewState = {
-    reviews: [],
-    loading: true,
-    error: null
+    sortedBy: null,
 };
 
-export const reviewSlice = createSlice<
-    ReviewState,
-    SliceCaseReducers<ReviewState>,
-    'reviews',
-    {}
-    >({
-    name: 'reviews',
+const reviewSlice = createSlice({
+    name: 'review',
     initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-        .addCase(fetchReviews.pending, (state: Draft<ReviewState>) => {
-            state.reviews = [];
-            state.loading = true;
-            state.error = null;
-        })
-        .addCase(fetchReviews.fulfilled, (state: Draft<ReviewState>, action) => {
-            state.reviews = action.payload;
-            state.loading = false;
-            state.error = null;
-        })
-        .addCase(fetchReviews.rejected, (state: Draft<ReviewState>, action) => {
-            state.reviews = [];
-            state.loading = false;
-            state.error = action.payload ?? new Error('Unknown reviews error');
-        });
-    }
+    reducers: {
+        setSortBy: (state, action: PayloadAction<'author' | 'date' | 'rating' | null>) => {
+            state.sortedBy = action.payload;
+        },
+    },
 });
 
+export const { setSortBy } = reviewSlice.actions;
 export default reviewSlice.reducer;

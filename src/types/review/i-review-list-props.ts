@@ -1,6 +1,5 @@
 import { IReview } from "./";
 import { TError } from "../error";
-import { fetchReviews } from "../../actions/review-actions";
 
 interface IReviewListProps {
     // Redux Props

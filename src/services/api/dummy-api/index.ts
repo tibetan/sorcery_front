@@ -1,24 +1,24 @@
 import type { TApiService } from '../../../types/api-service';
 import { getUsers } from './users';
-import { getReviews } from './reviews';
 import { getBooks } from './books';
 import { productsApi, useGetProductsQuery, useGetProductQuery } from "./products";
-// import {ApiService} from "../index";
+import { reviewsApi, useGetReviewsQuery } from "./reviews";
 
-// export { productsApi } from './products';
-
-// const { useGetProductsQuery, useGetProductQuery } = ApiService;
-
-const DummyApiService: TApiService & { productsApi: typeof productsApi } = {
+const DummyApiService: TApiService<
+    typeof productsApi,
+    typeof reviewsApi,
+    {
+        useGetProductsQuery: typeof useGetProductsQuery;
+        useGetProductQuery: typeof useGetProductQuery;
+        useGetReviewsQuery: typeof useGetReviewsQuery;
+    }
+    > = {
     productsApi,
-    // useGetProductsQuery,
-    // useGetProductQuery,
-    // getUsers,
-    // getReviews,
+    reviewsApi,
     getBooks,
-
-    useGetProductsQuery: useGetProductsQuery as any,
-    useGetProductQuery: useGetProductQuery as any,
+    useGetProductsQuery,
+    useGetProductQuery,
+    useGetReviewsQuery,
 };
 
 export default DummyApiService;

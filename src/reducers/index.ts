@@ -12,6 +12,7 @@ const rootReducer = combineReducers({
     productReducer,
     // для RTK Query API добавляй их вручную
     productsApi: ApiService.productsApi.reducer,
+    reviewsApi: ApiService.reviewsApi.reducer,
     // если будут другие API — тоже явно
 });
 

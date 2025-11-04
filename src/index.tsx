@@ -9,8 +9,6 @@ import theme from './styles/theme';
 import { setupStore } from './store';
 import ErrorBoundary from './components/error-boundary/error-boundary';
 import { ApiServiceProvider } from './components/api-service-context/api-service-context';
-// import ApiService from './services/api';
-// import ApiService from './services/api/dummy';
 import { ApiService } from './services/api';
 
 import App from './components/app/app';
@@ -21,6 +19,7 @@ const root = createRoot(document.getElementById('root')!);
 root.render(
   <Provider store={store}>
     <ErrorBoundary>
+        {/* TODO удалить после полного перехода на RTK Query */}
       <ApiServiceProvider value={ApiService}>
         <ThemeProvider theme={theme}>
           <CssBaseline />

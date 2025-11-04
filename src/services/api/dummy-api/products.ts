@@ -1,11 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { BaseQueryFn, FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { IProduct } from '../../../types/product';
 import { transformProduct } from '../transformers/products';
-import { TApiFilters } from '../../../types/api-service';
 import { products } from "./data/products";
-
-type TFakeArg = { url: string }
+import { IProduct } from '../../../types/product';
+import { TApiFilters, TFakeArg } from '../../../types/api-service';
 
 const fakeBaseQuery: BaseQueryFn<TFakeArg, unknown, FetchBaseQueryError> = async ({ url }) => {
     await new Promise((resolve) => setTimeout(resolve, 900));

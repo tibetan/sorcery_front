@@ -1,51 +1,23 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {AppDispatch, RootState} from "../../store";
-import { fetchReviews } from '../../actions/review-actions';
-
-import withApiService from '../hoc/with-api-service';
-import compose from '../../utils/compose';
-
-import { IReviewListProps } from "../../types/review";
-
+import React from 'react';
+import { useSelector } from "react-redux";
+import { selectSortedReviews } from '../../selectors/reviews';
 import ReviewList from './review-list';
 import Spinner from "../spinner/spinner";
-import ErrorIndicator from "../error-indicator/error-indicator";
+import { ApiService } from '../../services/api';
 
-class ReviewListContainer extends Component<IReviewListProps, object> {
+const ReviewListContainer = () => {
+    const { useGetReviewsQuery } = ApiService;
 
-    componentDidMount() {
-        this.props.fetchReviews();
-    }
+    // RTK Query автоматически диспатчит запрос и обновляет store
+    const { data: reviewsData, isLoading, error } = useGetReviewsQuery();
 
-    render() {
-        const { reviews, loading, error, } = this.props;
+    const reviews = useSelector(selectSortedReviews);
 
-        if (loading) {
-            return <Spinner />;
-        }
+    if (isLoading) return <Spinner />;
+    if (error) return <div>Error loading reviews: {JSON.stringify(error)}</div>;
+    // if (error) return <div>Error loading reviews</div>;
 
-        if (error) {
-            return <ErrorIndicator />;
-        }
-
-        return <ReviewList reviews = {reviews} />;
-    }
-}
-
-const mapStateToProps = ({ reviewReducer: { reviews, loading, error }}: RootState) => {
-    return { reviews, loading, error };
+    return <ReviewList reviews={reviews.length ? reviews : reviewsData || []} />;
 };
 
-const mapDispatchToProps = (
-    dispatch: AppDispatch,
-    { apiService }: { apiService: IReviewListProps['apiService'] }
-) => ({
-    fetchReviews: () =>
-        dispatch(fetchReviews({ apiService })),
-});
-
-export default compose(
-    withApiService(),
-    connect(mapStateToProps, mapDispatchToProps)
-)(ReviewListContainer as React.ComponentType<unknown>);
+export default ReviewListContainer;

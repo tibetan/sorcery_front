@@ -13,7 +13,7 @@ const ReviewListItem = ({ review }: ReviewListProps) => {
     return (
         <div className='review-list-item'>
             <div>id: {id}</div>
-            <div>User email: {user?.email}</div>
+            <div>User name: {user?.name}</div>
             <div>Product name: {product?.name}</div>
             <div>Rating: {rating}</div>
             <div>Description: {description}</div>

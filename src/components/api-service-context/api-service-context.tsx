@@ -1,7 +1,7 @@
 import React from 'react';
-import type { TApiService } from '../../types/api-service';
+import type { TApiServiceReal, TApiServiceFake } from '../../types/api-service';
 
-export const ApiServiceContext = React.createContext<TApiService | null>(null);
+export const ApiServiceContext = React.createContext<TApiServiceReal | TApiServiceFake | null>(null);
 
 const {
   Provider: ApiServiceProvider,
