@@ -1,53 +1,19 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-
-import { RootState, AppDispatch } from '../../store';
-import { fetchBooks } from '../../actions/book-actions';
-import { addBookToCart } from '../../actions/cart-actions';
-
+import React from 'react';
 import BookList from './book-list';
 import Spinner from '../spinner/spinner';
 import ErrorIndicator from '../error-indicator/error-indicator';
-import withApiService from '../hoc/with-api-service';
+import { ApiService } from '../../services/api';
+import { useCartActions } from "../../actions/cart";
 
-import compose from '../../utils/compose';
+const BookListContainer = () => {
+    const { useGetBooksQuery } = ApiService;
+    const { data: books, isLoading, error } = useGetBooksQuery();
+    const { bookAddedToCart } = useCartActions();
 
-import { IBookListProps } from '../../types/book';
+    if (isLoading) return <Spinner/>;
+    if (error) return <ErrorIndicator/>;
 
-class BookListContainer extends Component<IBookListProps, object> {
-
-  componentDidMount() {
-    this.props.fetchBooks();
-  }
-
-  render() {
-    const { books, loading, error, onAddedToCart } = this.props;
-
-    if (loading) {
-      return <Spinner />;
-    }
-
-    if (error) {
-      return <ErrorIndicator />;
-    }
-
-    return <BookList books={books} onAddedToCart={onAddedToCart} />;
-  }
-}
-
-const mapStateToProps = ({ bookReducer: { books, loading, error }}: RootState) => {
-  return { books, loading, error };
+    return <BookList books={books || []} onAddToCart={bookAddedToCart} />;
 };
 
-const mapDispatchToProps = (
-  dispatch: AppDispatch,
-  { apiService }: { apiService: IBookListProps['apiService'] }
-) => ({
-  fetchBooks: fetchBooks(apiService, dispatch),
-  onAddedToCart: (id: number) => dispatch(addBookToCart(id)),
-});
-
-export default compose(
-  withApiService(),
-  connect(mapStateToProps, mapDispatchToProps)
-)(BookListContainer as React.ComponentType<unknown>);
+export default BookListContainer;

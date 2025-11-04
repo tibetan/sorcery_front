@@ -1,114 +1,101 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { bookSlice } from './book-slice';
-import { ICart } from '../types/cart';
 import { IBook } from '../types/book';
+import { ICart } from '../types/cart';
 
-// Определяем тип для состояния
+// --- Тип состояния ---
 interface CartState {
-  cartItems: ICart[];
-  orderTotal: number;
-  books: IBook[];
+    cartItems: ICart[];
+    orderTotal: number;
 }
 
-// Начальное состояние
+// --- Начальное состояние ---
 const initialState: CartState = {
-  cartItems: [],
-  orderTotal: 0,
-  books: [],
+    cartItems: [],
+    orderTotal: 0,
 };
 
+// --- Вспомогательные функции ---
 const updateCartItems = (cartItems: ICart[], item: ICart, idx: number) => {
-  if (item.count === 0) {
-    return [
-      ...cartItems.slice(0, idx),
-      ...cartItems.slice(idx + 1)
-    ];
-  }
+    if (item.count === 0) {
+        return [...cartItems.slice(0, idx), ...cartItems.slice(idx + 1)];
+    }
 
-  if (idx === -1) {
-    return [
-      ...cartItems,
-      item
-    ];
-  }
+    if (idx === -1) {
+        return [...cartItems, item];
+    }
 
-  return [
-    ...cartItems.slice(0, idx),
-    item,
-    ...cartItems.slice(idx + 1)
-  ];
+    return [...cartItems.slice(0, idx), item, ...cartItems.slice(idx + 1)];
 };
 
-const updateCartItem = (book: IBook, item: ICart, quantity: number) => {
+const updateCartItem = (book: IBook, item: ICart | undefined, quantity: number): ICart => {
+    const {
+        id = book.id,
+        title = book.title,
+        count = 0,
+        total = 0,
+    } = item || {};
 
-  const {
-    id = book.id,
-    count = 0,
-    title = book.title,
-    total = 0 } = item || {};
-
-  return {
-    id,
-    title,
-    count: count + quantity,
-    total: total + quantity*book.price
-  };
+    return {
+        id,
+        title,
+        count: count + quantity,
+        total: total + quantity * book.price,
+    };
 };
 
-const updateOrderTotal = (cartItems: ICart[]): number => {
-  return cartItems.reduce((sum, item) => sum + item.total, 0);
-};
+const updateOrderTotal = (cartItems: ICart[]): number =>
+    cartItems.reduce((sum, item) => sum + item.total, 0);
 
-const updateOrder = (
-  state: CartState,
-  bookId: number,
-  quantity: number
-) => {
-  const { books, cartItems } = state;
-  const book = books.find(({ id }) => id === bookId);
-
-  if (!book) {
-    console.warn(`Book with id ${bookId} not found`);
-    return;
-  }
-
-  const itemIndex = cartItems.findIndex(({ id }) => id === bookId);
-  const item = cartItems[itemIndex];
-
-  const newItem = updateCartItem(book, item, quantity);
-  state.cartItems = updateCartItems(cartItems, newItem, itemIndex);
-  state.orderTotal = state.cartItems && updateOrderTotal(state.cartItems);
-};
-
+// --- Основной slice ---
 export const cartSlice = createSlice({
-  name: 'cart',
-  initialState,
-  reducers: {
-    bookAddedToCart(state, action: PayloadAction<number>) {
-      updateOrder(state, action.payload, 1);
+    name: 'cart',
+    initialState,
+    reducers: {
+        bookAddedToCart(state, action: PayloadAction<IBook>) {
+            const book = action.payload;
+            const itemIndex = state.cartItems.findIndex(({ id }) => id === book.id);
+            const item = state.cartItems[itemIndex];
+
+            const newItem = updateCartItem(book, item, 1);
+            state.cartItems = updateCartItems(state.cartItems, newItem, itemIndex);
+            state.orderTotal = updateOrderTotal(state.cartItems);
+        },
+
+        bookRemovedFromCart(state, action: PayloadAction<IBook>) {
+            const book = action.payload;
+            const itemIndex = state.cartItems.findIndex(({ id }) => id === book.id);
+            const item = state.cartItems[itemIndex];
+
+            if (!item) return;
+
+            const newItem = updateCartItem(book, item, -1);
+            state.cartItems = updateCartItems(state.cartItems, newItem, itemIndex);
+            state.orderTotal = updateOrderTotal(state.cartItems);
+        },
+
+        allBooksRemovedFromCart(state, action: PayloadAction<IBook>) {
+            const book = action.payload;
+            const item = state.cartItems.find(({ id }) => id === book.id);
+            if (!item) return;
+
+            const itemIndex = state.cartItems.findIndex(({ id }) => id === book.id);
+            const newItem = updateCartItem(book, item, -item.count);
+            state.cartItems = updateCartItems(state.cartItems, newItem, itemIndex);
+            state.orderTotal = updateOrderTotal(state.cartItems);
+        },
+
+        cartCleared(state) {
+            state.cartItems = [];
+            state.orderTotal = 0;
+        },
     },
-    bookRemovedFromCart(state, action: PayloadAction<number>) {
-      updateOrder(state, action.payload, -1);
-    },
-    allBooksRemovedFromCart(state, action: PayloadAction<number>) {
-      const item = state.cartItems.find(({id}) => id === action.payload);
-      if (!item) {
-        return;
-      }
-      updateOrder(state, action.payload, -item.count);
-    },
-},
-  extraReducers: (builder) => {
-    builder.addCase(
-      bookSlice.actions.booksLoaded,
-      (state: CartState, action: PayloadAction<IBook[]>) => {
-        state.books = action.payload;
-      }
-    );
-  },
 });
 
-export const { bookAddedToCart, bookRemovedFromCart, allBooksRemovedFromCart } = cartSlice.actions;
+export const {
+    bookAddedToCart,
+    bookRemovedFromCart,
+    allBooksRemovedFromCart,
+    cartCleared,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

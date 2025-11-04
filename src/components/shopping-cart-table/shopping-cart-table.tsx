@@ -1,23 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Button from '@mui/material/Button';
-
-import {RootState} from "../../store";
-import { addBookToCart, removeBookFromCart, removeAllBooksFromCart } from '../../actions/cart-actions';
-
+import { useCartActions } from '../../actions/cart';
 import { ICart } from "../../types/cart";
+import { ApiService } from "../../services/api";
+import { useAppSelector } from '../../store/hooks';
 
 import './shopping-cart-table.sass';
 
-interface ShoppingCartTableProps {
-  items: ICart[];
-  total: number;
-  onIncrease: (id: number) => void;
-  onDelete: (id: number) => void;
-  onDecrease: (id: number) => void;
-}
+const ShoppingCartTable: React.FC = () => {
+    const { bookAddedToCart, bookRemovedFromCart, allBooksRemovedFromCart } = useCartActions();
+    const { useGetBooksQuery } = ApiService;
+    const { data: books } = useGetBooksQuery();
+    const { cartItems, orderTotal } = useAppSelector(state => state.cartReducer);
 
-const ShoppingCartTable = ({ items, total, onIncrease, onDelete, onDecrease }: ShoppingCartTableProps) => {
+    const handleIncrease = (id: number) => {
+        const book = books?.find(b => b.id === id);
+        if (book) { bookAddedToCart(book) }
+    };
+
+    const handleDecrease = (id: number) => {
+        const book = books?.find(b => b.id === id);
+        if (book) { bookRemovedFromCart(book) }
+    };
+
+    const handleDelete = (id: number) => {
+        const book = books?.find(b => b.id === id);
+        if (book) { allBooksRemovedFromCart(book) }
+    };
+
   const renderRow = (item: ICart, idx: number) => {
     const { id, title, count, total } = item;
     return (
@@ -27,22 +37,21 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDelete, onDecrease }: S
         <td>{count}</td>
         <td>${total}</td>
         <td>
-          {/*<Button variant="outlined">Outlined</Button>*/}
           <Button
             variant="outlined"
-            onClick={() => onDelete(id)}
+            onClick={() => handleDelete(id)}
             className="btn btn-outline-danger btn-sm float-right">
             Delete
           </Button>
           <Button
             variant="outlined"
-            onClick={() => onIncrease(id)}
+            onClick={() => handleIncrease(id)}
             className="btn btn-outline-success btn-sm float-right">
             +
           </Button>
           <Button
             variant="outlined"
-            onClick={() => onDecrease(id)}
+            onClick={() => handleDecrease(id)}
             className="btn btn-outline-warning btn-sm float-right">
             -
           </Button>
@@ -64,30 +73,12 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDelete, onDecrease }: S
             <th>Action</th>
           </tr>
         </thead>
-
-        <tbody>
-        { items.map(renderRow) }
-        </tbody>
+          <tbody>{cartItems.map(renderRow)}</tbody>
       </table>
 
-      <div className="total">
-        Total: ${total}
-      </div>
+        <div className="total">Total: ${orderTotal}</div>
     </div>
   );
 };
 
-const mapStateToProps = ({ cartReducer: { cartItems, orderTotal } }: RootState) => {
-  return {
-    items: cartItems,
-    total: orderTotal,
-  };
-};
-
-const mapDispatchToProps = {
-  onIncrease: addBookToCart,
-  onDecrease: removeBookFromCart,
-  onDelete: removeAllBooksFromCart
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
+export default ShoppingCartTable;

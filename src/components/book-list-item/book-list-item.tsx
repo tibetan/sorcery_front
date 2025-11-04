@@ -6,11 +6,11 @@ import { IBook } from '../../types/book';
 import './book-list-item.sass';
 
 interface BookListItemProps {
-  book: IBook;
-  onAddedToCart: () => void;
+    book: IBook;
+    onAddToCart: (book: IBook) => void;
 }
 
-const BookListItem = ({ book, onAddedToCart }: BookListItemProps) => {
+const BookListItem = ({ book, onAddToCart }: BookListItemProps) => {
   const { title, author, price, coverImage } = book;
   return (
     <div className="book-list-item">
@@ -24,7 +24,7 @@ const BookListItem = ({ book, onAddedToCart }: BookListItemProps) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={onAddedToCart}
+          onClick={() => onAddToCart(book)}
           className="btn btn-info add-to-cart">
           Add to cart
         </Button>

@@ -20,6 +20,10 @@ const fakeBaseQuery: BaseQueryFn<TFakeArg, unknown, FetchBaseQueryError> = async
         return { error: { status: 404, data: 'Product not found' } };
     }
 
+    if (Math.random() < 0.1) {
+        return { error: { status: 500, data: 'Server error (mocked)' } };
+    }
+
     return { error: { status: 404, data: 'Not found' } };
 };
 

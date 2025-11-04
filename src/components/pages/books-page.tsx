@@ -2,7 +2,7 @@ import React from 'react';
 import BookListContainer from '../book-list/book-list-container';
 import ShoppingCartTable from '../shopping-cart-table/shopping-cart-table';
 
-const HomePage = () => {
+const BooksPage = () => {
   return (
     <div>
       <BookListContainer />
@@ -11,4 +11,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default BooksPage;

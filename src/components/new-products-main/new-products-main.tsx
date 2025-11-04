@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { useProductActions } from '../../actions/products';
 
 import { IProduct } from "../../types/product";
 import NewProductsMainItem from "../new-products-main-item/new-products-main-item";
@@ -10,11 +9,12 @@ import './new-products-main.sass';
 
 interface ProductListProps {
     products: IProduct[];
+    setSelectedCategory: (category: string) => void;
+    setSelectedId: (id: number|null) => void;
 }
 
-const NewProductsMain = ({ products }: ProductListProps) => {
-    const { setSelectedCategory, setSelectedId } = useProductActions();
-    const { selectedCategory, selectedId } = useSelector(
+const NewProductsMain = ({ products, setSelectedCategory, setSelectedId }: ProductListProps) => {
+    const { selectedId } = useSelector(
         (state: RootState) => state.productReducer
     );
 
