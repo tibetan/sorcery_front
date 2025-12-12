@@ -6,4 +6,4 @@ services:
             dockerfile: docker/ui/Dockerfile.prod
         ports:
             - ${PORT_HOST_MACHINE_PROD}:8081
-        restart: always
+        restart: unless-stopped

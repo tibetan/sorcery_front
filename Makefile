@@ -11,14 +11,14 @@ else ifeq ($(ENV),prod)
   DC = $(DOCKER_COMPOSE_PROD)
 endif
 
-.PHONY: up build down restart ps logs clean bash
+.PHONY: up up-build down restart ps logs clean bash
 
 # Поднять контейнеры
 up:
 	$(DC) up -d
 
 # Поднять и пересобрать
-build:
+up-build:
 	$(DC) up -d --build
 
 # Остановить контейнеры

@@ -1,0 +1,44 @@
+// --- Переменные (Настройки) ---
+$text-color-default: #7a7a7a
+$text-color-hover: #ffffff
+$border-color: #dcdcdc
+$font-family: 'YourSerifFont', serif
+$brush-texture: './mazok1.png'
+
+.aquarelle-button
+  position: relative
+  background: none
+  border: none
+  padding: 12px 24px 10px
+  cursor: pointer
+  overflow: hidden
+  outline: none
+
+  .button-text
+    position: relative
+    z-index: 2
+    color: $text-color-default
+    font-family: $font-family
+    font-size: 1.1rem
+    transition: color 0.3s ease-out
+
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    width: 0       // стартуем с нулевой ширины
+    height: 100%
+    z-index: 1
+    background-image: url($brush-texture)
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: left center
+    transition: width 0.5s ease-out   // анимируем только ширину
+
+  &:hover
+    .button-text
+      color: $text-color-hover
+
+    &::before
+      width: 100%   // мазок проявляется полностью

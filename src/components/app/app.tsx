@@ -1,19 +1,19 @@
 import React from 'react';
 
-import ShopHeader from '../shop-header/shop-header';
-import AppRoutes from './router';
+import Header from '../header/header';
+import Main from '../main/main';
 import Footer from '../footer/footer';
 
 import './app.sass';
 
-const App = () => {
-  return (
-    <main role="main" className="app">
-      <ShopHeader />
-      <AppRoutes />
-      <Footer />
-    </main>
-  );
+const App:React.FC = () => {
+    return (
+        <div className="app">
+            <Header />
+            <Main />
+            <Footer />
+        </div>
+    );
 };
 
 export default App;

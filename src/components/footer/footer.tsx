@@ -4,9 +4,9 @@ import './footer.sass';
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       It's footer
-    </div>
+    </footer>
   );
 };
 
