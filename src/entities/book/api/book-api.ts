@@ -1,5 +1,5 @@
 import { baseApi } from '@/shared/api/base-api';
-import { adaptResponseWith } from '@/shared/lib/api/adaptResponse';
+import { adaptResponseWith } from '@/shared/lib/api/adapt-response';
 import { transformBook, transformBooks } from './transform';
 import { ApiBook, Book } from '@/entities/book/model/types';
 

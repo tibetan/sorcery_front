@@ -1,5 +1,5 @@
 import { baseApi } from '@/shared/api/base-api';
-import { adaptResponseWith } from '@/shared/lib/api/adaptResponse';
+import { adaptResponseWith } from '@/shared/lib/api/adapt-response';
 import { transformReview, transformReviews } from "@/entities/review/api/transform";
 import { ApiReview, Review } from '@/entities/review/model/types';
 

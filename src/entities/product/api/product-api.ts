@@ -1,5 +1,5 @@
 import { baseApi } from '@/shared/api/base-api';
-import { adaptResponseWith } from '@/shared/lib/api/adaptResponse';
+import { adaptResponseWith } from '@/shared/lib/api/adapt-response';
 import { buildQueryString } from '@/shared/api/base-api';
 import { transformProduct, transformProducts } from './transform';
 import { ApiProduct, Product } from '@/entities/product/model/types';

@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { realBaseQuery } from './realBaseQuery';
-import { dummyBaseQuery } from './dummyBaseQuery';
+import { realBaseQuery } from './real-base-query';
+import { dummyBaseQuery } from './dummy-base-query';
 import { ApiFilters } from "@/shared/api/types";
 
 const useDummy = process.env.REACT_APP_USE_DUMMY_API === 'true';

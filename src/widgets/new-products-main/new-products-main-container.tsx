@@ -2,7 +2,7 @@ import React from 'react';
 import NewProductsMain from './new-products-main';
 import Spinner from '@/shared/ui/spinner';
 import ErrorIndicator from '@/shared/ui/error-indicator';
-import { useGetProductsQuery } from '@/entities/product/api/productApi';
+import { useGetProductsQuery } from '@/entities/product/api/product-api';
 import { useAppSelector } from '@/app/providers/store/hooks';
 import { useDebounce } from '@/shared/lib/hooks/use-debounce';
 import { selectSelectedProductId } from '@/features/product-filters/model/selectors';

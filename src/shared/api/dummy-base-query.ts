@@ -1,5 +1,5 @@
 import { BaseQueryFn } from '@reduxjs/toolkit/query';
-import { dummyService } from './dummyService';
+import { dummyService } from './dummy-service';
 import { DummyArgs } from './types';
 
 export const dummyBaseQuery: BaseQueryFn<
