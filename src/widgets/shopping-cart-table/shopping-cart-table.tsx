@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import { useAppSelector, useAppDispatch } from '@/app/providers/store/hooks';
 import { useGetBooksQuery } from '@/entities/book/api/book-api';
-import { addItem, removeItem, removeCartItem } from '@/entities/cart/model/slice';
+import { addItem, removeItem, removeItemCompletely } from '@/entities/cart/model/slice';
 import { selectCartItems, selectCartTotal } from '@/entities/cart/model/selectors';
 import Spinner from '@/shared/ui/spinner';
 import ErrorIndicator from '@/shared/ui/error-indicator';
@@ -31,7 +31,8 @@ const ShoppingCartTable: React.FC = () => {
     };
 
     const handleDelete = (id: number) => {
-        dispatch(removeCartItem(id));
+        const book = books?.find(b => b.id === id);
+        if (book) dispatch(removeItemCompletely(book))
     };
 
     const renderRow = (item: CartItem, idx: number) => {

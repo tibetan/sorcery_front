@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { calculateTotalPrice, updateItem, updateItems } from './helpers';
-import { CartState, CartItem, CartItemInput } from './types';
+import { CartState, CartItemInput } from './types';
 
 const initialState: CartState = {
     items: [],
@@ -43,14 +43,6 @@ export const cartSlice = createSlice({
             state.totalPrice = calculateTotalPrice(state.items);
         },
 
-        removeCartItem(state, action: PayloadAction<number | undefined>) {
-            if (action.payload) {
-                state.items = state.items.filter(item => item.id !== action.payload);
-            } else {
-                state.items = [];
-            }
-        },
-
         clearCart: () => initialState,
     },
 });
@@ -59,7 +51,6 @@ export const {
     addItem,
     removeItem,
     removeItemCompletely,
-    removeCartItem,
     clearCart,
 } = cartSlice.actions;
 
