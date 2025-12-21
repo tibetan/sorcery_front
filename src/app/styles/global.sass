@@ -1,0 +1,265 @@
+@use "sass:color"
+@use 'variables' as *
+@use 'mixins' as *
+
+// ---------- Общая база ----------
+html, body, #root
+  height: 100%
+
+html
+  scroll-behavior: smooth
+  font-size: 14px
+
+body
+  margin: 0
+  font-family: $font-main
+  line-height: 1.6
+  color: $color-text
+  background-color: $color-bg
+  background-image: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23noise)' opacity='0.2'/></svg>")
+  background-repeat: repeat
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+// ---------- Текст ----------
+h1, h2, h3, h4, h5, h6
+  font-weight: 600
+  color: $color-primary
+  margin-bottom: 0.5em
+
+p
+  color: $color-primary
+  line-height: 1.5
+  margin-bottom: 1em
+
+.text-muted
+  color: $color-muted
+
+.text-center
+  text-align: center
+
+// ---------- Ссылки ----------
+a
+  position: relative
+  color: $color-primary
+  text-decoration: none
+  transition: color 0.3s ease
+
+  // Тонкая линия под ссылкой
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    bottom: -2px          // линия чуть ниже текста
+    width: 100%
+    height: 2px           // толщина линии
+    background: $color-accent
+    transform: scaleX(0)  // скрыта
+    transform-origin: left
+    transition: transform 0.3s ease
+
+  &:hover
+    color: color.adjust($color-primary, $lightness: -10%)
+
+    &::after
+      transform: scaleX(1) // линия появляется слева направо
+
+
+// ---------- Кнопки ----------
+button
+  position: relative
+  cursor: pointer
+  color: $color-inverse
+  border: 1px solid transparent
+  border-radius: 0.6rem
+  padding: 0.2rem 1.2rem 0.3rem
+  transition: border 0.2s
+
+  &::before
+    content: ''
+    position: absolute
+    background-color: $color-primary
+    inset: 0
+    filter: blur(10px)
+    z-index: 0
+
+  span
+    position: relative
+    z-index: 2
+    display: inline-block
+    transition: color 0.6s ease
+
+  &:hover
+    border: 1px solid $color-primary
+    span
+      color: $color-text
+
+// ---------- Инпуты и textarea ----------
+input, textarea, select
+  font: inherit
+  padding: 0.5rem 0.8rem
+  border-radius: 0.6rem
+  border: 1px solid rgba($color-primary, 0.3)
+  background-color: $color-surface
+  color: $color-text
+  transition: border-color 0.3s ease, background-color 0.3s ease
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active
+    -webkit-box-shadow: 0 0 0 1000px $color-surface inset !important
+    -webkit-text-fill-color: $color-text !important
+    border-color: rgba($color-primary, 0.3) !important
+    transition: background-color 0s, color 0s, border-color 0s
+
+  &::placeholder
+    color: $color-muted
+
+  &:focus
+    outline: none
+    border-color: $color-primary
+    background-color: color.adjust($color-surface, $lightness: 3%)
+
+input[type="checkbox"],
+input[type="radio"]
+  appearance: none
+  -webkit-appearance: none
+  -moz-appearance: none
+  width: 1.2rem
+  height: 1.2rem
+  border: 2px solid $color-primary
+  border-radius: 0.3rem
+  background-color: $color-surface
+  cursor: pointer
+  position: relative
+  transition: background-color 0.3s ease, border-color 0.3s ease
+
+input[type="checkbox"]:checked::after
+  content: ''
+  position: absolute
+  top: 2px
+  left: 5px
+  width: 4px
+  height: 8px
+  border: solid $color-primary
+  border-width: 0 2px 2px 0
+  transform: rotate(45deg)
+
+input[type="radio"]
+  border-radius: 50%
+
+input[type="radio"]:checked::after
+  content: ''
+  position: absolute
+  top: 3px
+  left: 3px
+  width: 6px
+  height: 6px
+  background-color: $color-primary
+  border-radius: 50%
+
+label.checkbox,
+label.radio
+  display: flex
+  align-items: center
+  gap: 0.5rem
+  font-size: 0.95rem
+  color: $color-text
+
+fieldset
+  background: $color-surface
+  border: 1px solid rgba(0, 0, 0, 0.06)
+  padding: 1.2rem 1.5rem
+  border-radius: 8px
+
+legend
+  color: $color-primary
+  padding: 0 0.4rem
+  font-weight: 600
+  font-size: 1.05rem
+  background: $color-surface // чтобы аккуратно «вырезать» место в рамке
+
+// ---------- Изображения ----------
+img
+  display: block
+  max-width: 100%
+  border-radius: 0.25rem
+
+// ---------- Галерея ----------
+.gallery
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+  gap: 1.5rem
+  padding: 1rem
+
+
+// ---------- Карточки ----------
+.card
+  position: relative
+  overflow: hidden
+  border-radius: 1rem
+  box-shadow: 0 4px 12px $color-shadow
+  transition: transform 0.3s ease
+  @include watercolor-bg($color-accent, 0.12, 18px)
+  &:hover
+    transform: translateY(-2px)
+
+  img
+    display: block
+    width: 100%
+    height: auto
+    object-fit: cover
+
+    // Маска для акварельного края
+    -webkit-mask-image: url('/src/widgets/hero/assets/images/watercolor-frame_my_01.png')
+    mask-image: url('/src/widgets/hero/assets/images/watercolor-frame_my_01.png')
+    mask-size: cover
+    mask-repeat: no-repeat
+    mask-position: center
+
+// ---------- Подписи к картинкам ----------
+.card .caption
+  position: absolute
+  bottom: 0.5rem
+  left: 0.5rem
+  padding: 0.3rem 0.5rem
+  background-color: rgba($color-bg, 0.6)
+  color: $color-text
+  border-radius: 0.4rem
+  font-size: 0.85rem
+  z-index: 2
+
+// ---------- Карточки / секции ----------
+//.card
+//  background: $color-surface
+//  border-radius: 1rem
+//  padding: 1.5rem
+//  box-shadow: 0 4px 12px $color-shadow
+//  transition: transform $transition-base
+//  &:hover
+//    transform: translateY(-2px)
+
+// ---------- Сноски / маленький текст ----------
+small, .note
+  font-size: 0.85rem
+  color: $color-muted
+  line-height: 1.3
+
+// ---------- Аннотации / подсказки ----------
+.tooltip, .annotation
+  position: relative
+  background-color: rgba(168,180,127,0.15) // лёгкий акварельный оттенок
+  padding: 0.4rem 0.6rem
+  border-radius: 0.5rem
+  font-size: 0.85rem
+  color: $color-text
+  box-shadow: 0 2px 8px $color-shadow
+  transition: transform 0.3s ease, opacity 0.3s ease
+
+  &.show
+    opacity: 1
+    transform: translateY(0)
+
+  &.hide
+    opacity: 0
+    transform: translateY(-4px)
