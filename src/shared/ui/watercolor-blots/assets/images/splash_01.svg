@@ -1,0 +1,36 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Фильтр для создания эффекта искажения и текучести (эффект воды) -->
+        <filter id="watercolor" x="-50%" y="-50%" width="200%" height="200%">
+            <!-- Создаем шум (текстуру) -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="5" seed="5" result="noise"/>
+            <!-- Искажаем изображение на основе шума -->
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="35" xChannelSelector="R" yChannelSelector="G"/>
+            <!-- Слегка размываем для мягкости -->
+            <feGaussianBlur stdDeviation="0.5" />
+        </filter>
+    </defs>
+
+    <!-- Группа с применением фильтра -->
+    <g filter="url(#watercolor)" style="mix-blend-mode: multiply;">
+
+        <!-- Пятно 1: Розовый/Маджента -->
+        <path d="M150,200 Q100,100 250,150 T350,250 T200,350 T100,250 Z"
+              fill="#ff0066" opacity="0.6" />
+
+        <!-- Пятно 2: Голубой/Циан -->
+        <path d="M250,180 Q350,100 400,200 T300,350 T150,300 Z"
+              fill="#00ccff" opacity="0.5" />
+
+        <!-- Пятно 3: Желтый/Оранжевый -->
+        <path d="M200,250 Q250,350 150,400 T100,300 T200,200 Z"
+              fill="#ffcc00" opacity="0.6" />
+
+        <!-- Мелкие брызги -->
+        <circle cx="120" cy="180" r="10" fill="#ff0066" opacity="0.7" />
+        <circle cx="380" cy="150" r="15" fill="#00ccff" opacity="0.6" />
+        <circle cx="420" cy="280" r="8" fill="#00ccff" opacity="0.5" />
+        <circle cx="180" cy="420" r="12" fill="#ffcc00" opacity="0.7" />
+        <circle cx="90" cy="280" r="6" fill="#ff0066" opacity="0.5" />
+    </g>
+</svg>
