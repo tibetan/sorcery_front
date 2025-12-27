@@ -19,5 +19,5 @@ export const reviewSortingSlice = createSlice({
 });
 
 export const { setSortBy, resetSort } = reviewSortingSlice.actions;
-export default reviewSortingSlice.reducer;
+export const reviewSortingReducer = reviewSortingSlice.reducer;
 

@@ -16,11 +16,17 @@ export const dummyService = {
             throw { status: 500, message: 'Server error (mocked)' };
         }
 
-        if (url.startsWith('/products')) {
-            return {
-                status: 200,
-                data: handleProducts(url, method, body),
-            };
+        const cleanUrl = url.split('?')[0];
+
+        switch (cleanUrl) {
+            case '/products':
+                return {
+                    status: 200,
+                    data: handleProducts(cleanUrl, method, body),
+                };
+
+            // default:
+            //     throw new Error('Not found');
         }
 
         if (url.startsWith('/reviews')) {
