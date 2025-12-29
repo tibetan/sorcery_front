@@ -89,14 +89,9 @@ const Hero = () => {
 
             <fieldset>
                 <legend>Выберите интересы:</legend>
-                <label className="checkbox">
-                    <input type="checkbox" name="hobby" value="reading"/>
-                    Чтение
-                </label>
-                <label className="checkbox">
-                    <input type="checkbox" name="hobby" value="sports"/>
-                    Спорт
-                </label>
+
+                <Input label='Name1' placeholder="Введите имя" />
+                <Input label='Name2' type='email' defaultValue='Qqqqq' placeholder="Введите email" />
             </fieldset>
 
             <a href="https://example.com" target="_blank" rel="noopener noreferrer">

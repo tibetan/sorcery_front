@@ -1,19 +1,19 @@
 @use '@/app/styles/variables' as *
 @use '@/shared/styles/mixins/form-control' as *
 
-.textarea-field
+.textarea
   display: flex
   flex-direction: column
   gap: 0.3rem
   &--disabled
     opacity: 0.6
-    .textarea
+    .textarea-field
       cursor: not-allowed
   //&--error
-  //  .textarea
+  //  .textarea-field
   //    border-color: $color-error
 
-.textarea
+.textarea-field
   @include form-control
   resize: vertical
   min-height: 5rem

@@ -13,20 +13,20 @@ export const Textarea: React.FC<TextareaProps> = ({
     return (
         <div
             className={classNames(
-                'textarea-field', {
-                    'textarea-field--disabled': disabled,
-                    'textarea-field--error': !!error,
+                'textarea', {
+                    'textarea--disabled': disabled,
+                    'textarea--error': !!error,
             })}
         >
-            {label && <label className="textarea-label">{label}</label>}
+            {label && <label className="textarea-field-label">{label}</label>}
 
             <textarea
-                className={classNames('textarea', className)}
+                className={classNames('textarea-field', className)}
                 disabled={disabled}
                 {...rest}
             />
 
-            {error && <span className="textarea-error">{error}</span>}
+            {error && <span className="textarea-field-error">{error}</span>}
         </div>
     );
 };
