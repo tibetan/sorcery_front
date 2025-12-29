@@ -12,21 +12,16 @@ import Index from './app/providers/error-boundary';
 import { store } from './app/providers/store';
 
 // import { ThemeProvider } from '@mui/material/styles';
-// import CssBaseline from '@mui/material/CssBaseline';
-// import theme from './styles/theme';
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
     <Provider store={store}>
         <Index>
-            {/*<ThemeProvider theme={theme}>*/}
-                {/*<CssBaseline />*/}
-                <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                    <App />
-                </Router>
+            <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+                <App />
+            </Router>
             {/*<WatercolorBlots />*/}
             {/*<CustomCursor />*/}
-            {/*</ThemeProvider>*/}
         </Index>
     </Provider>
 );

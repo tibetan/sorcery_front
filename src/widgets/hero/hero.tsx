@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
 import './aquarelleButton.sass';
 import './hero.sass';
 import './fancy-btn.sass';
@@ -17,48 +18,32 @@ const ProjectColors:React.FC<ProjectColorsProps> = ({ color }) => {
     );
 }
 
-// const AquarelleButton = ({ className = '' }) => {
-//     return (
-//         <div>
-//             <button
-//                 className={`aquarelle-button ${className}`}
-//             >
-//                 <span className="button-text">Нажми меня</span>
-//             </button>
-//             <button
-//                 className={`aquarelle-button ${className}`}
-//             >
-//                 <span className="button-text">qqq</span>
-//             </button>
-//         </div>
-//     );
-// };
-
-// const FancyButton = () => {
-//     return (
-//         <div>
-//             <button className="fancy-btn">Нажми меня</button>
-//         </div>
-//     );
-// };
-
-const WaterColorButton = () => {
-    return (
-        <div>
-            <button>
-                <span>Нажми меня</span>
-            </button>
-        </div>
-    );
-};
-
 const Hero = () => {
   return (
     <div className='hero'>
+        <Button size="large" variant="primary">
+            Купить
+        </Button>
 
-        {/*<AquarelleButton />*/}
-        {/*<FancyButton />*/}
-        <WaterColorButton />
+        <Button size="medium" variant="primary">
+            Купить
+        </Button>
+
+        <Button size="medium" variant="secondary">
+            Купить
+        </Button>
+
+        <Button size="small" variant="primary">
+            Купить
+        </Button>
+
+        <Button loading>
+            Сохранить
+        </Button>
+
+        <Button disabled>
+            Недоступно
+        </Button>
 
         <div style={{ marginTop: '40px' }}>
             <h1 style={{ color: '#A8B47F' }}>Primary Heading</h1>
@@ -72,11 +57,14 @@ const Hero = () => {
         </div>
 
         <form className="form-example">
-            <label htmlFor="name">Имя</label>
-            <input type="text" id="name" placeholder="Введите имя"/>
+            {/*<label htmlFor="name">Имя</label>*/}
+            {/*<input type="text" id="name" placeholder="Введите имя"/>*/}
 
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Введите email"/>
+            <p></p>
+
+            <Input label='Name1' placeholder="Введите имя" />
+            <Input label='Name2' type='email' defaultValue='Qqqqq' placeholder="Введите email" />
+
 
             <label htmlFor="message">Сообщение</label>
             <textarea id="message" placeholder="Введите сообщение"></textarea>
