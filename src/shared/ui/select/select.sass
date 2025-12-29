@@ -1,0 +1,28 @@
+@use '@/app/styles/variables' as *
+@use '@/shared/styles/mixins/form-control' as *
+
+.select
+  display: flex
+  flex-direction: column
+  gap: 0.3rem
+
+  &__label
+    font-size: 0.85rem
+    color: $color-muted
+
+  &__field
+    @include form-control
+    appearance: none
+    cursor: pointer
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%236E7C55' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>")
+    background-repeat: no-repeat
+    background-position: right 0.6rem center
+    background-size: 1rem
+
+  &__field--disabled
+    cursor: not-allowed
+    opacity: 0.6
+
+  &__error
+    font-size: 0.75rem
+    color: $color-error

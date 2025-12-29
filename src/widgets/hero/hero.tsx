@@ -2,6 +2,9 @@ import React from 'react';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { Textarea } from '@/shared/ui/textarea';
+import { Select } from '@/shared/ui/select';
+import { Checkbox } from '@/shared/ui/checkbox';
+import { Radio } from '@/shared/ui/radio';
 import './aquarelleButton.sass';
 import './hero.sass';
 import './fancy-btn.sass';
@@ -68,19 +71,21 @@ const Hero = () => {
 
             <Textarea label='Name_3' placeholder="Введите сообщение" />
 
+            <Select
+                label="Name_4"
+                value='category'
+                options={[
+                    { value: '', label: 'Выберите страну' },
+                    { value: 'bg', label: 'Болгария' },
+                    { value: 'ua', label: 'Украина' },
+                    { value: 'us', label: 'США' },
+                ]}
+            />
 
-            <label htmlFor="country">Страна</label>
-            <select id="country">
-                <option value="">Выберите страну</option>
-                <option value="bg">Болгария</option>
-                <option value="ua">Украина</option>
-                <option value="us">США</option>
-            </select>
+            <Checkbox name="hobby" label='Согласен с условиями' value="reading" />
 
-            <label className="checkbox">
-                <input type="checkbox" name="hobby" value="reading"/>
-                Чтение
-            </label>
+            <Radio name="type" value="a" label="Вариант A" />
+            <Radio name="type" value="b" label="Вариант B" />
 
             <fieldset>
                 <legend>Выберите интересы:</legend>
