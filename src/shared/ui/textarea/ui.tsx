@@ -1,57 +1,32 @@
 import React from 'react';
 import classNames from 'classnames';
-import { BUTTON_SIZES, BUTTON_TYPES } from './model';
-import Spinner from '@/shared/ui/spinner';
-import type { ButtonProps } from './model';
+import type { TextareaProps } from './model';
 import './textarea.sass';
 
-
-export const Button: React.FC<ButtonProps> = ({
-    variant = BUTTON_TYPES.PRIMARY,
-    size = BUTTON_SIZES.MEDIUM,
-    loading = false,
-    disabled = false,
+export const Textarea: React.FC<TextareaProps> = ({
+    label,
+    error,
     className,
-    children,
+    disabled,
     ...rest
 }) => {
-    const isDisabled = disabled || loading;
-
-    const btnClass = classNames(
-        'button',
-        `button--${variant}`,
-        `button--${size}`,
-        {
-            'button--disabled': isDisabled,
-        },
-        className
-    );
-
     return (
-        <button
-            className={btnClass}
-            disabled={isDisabled}
-            {...rest}
+        <div
+            className={classNames(
+                'textarea-field', {
+                    'textarea-field--disabled': disabled,
+                    'textarea-field--error': !!error,
+            })}
         >
-            {loading ? (
-                    <span><Spinner/></span>
-            ) : (
-                <span>{children}</span>
-            )}
-        </button>
-    );
+            {label && <label className="textarea-label">{label}</label>}
 
-    // return (
-    //     <button
-    //         {...props}
-    //         className={classNames(
-    //             'button',
-    //             `button--${variant}`,
-    //             `button--${size}`,
-    //             className
-    //         )}
-    //     >
-    //         <span>{children}</span>
-    //     </button>
-    // );
+            <textarea
+                className={classNames('textarea', className)}
+                disabled={disabled}
+                {...rest}
+            />
+
+            {error && <span className="textarea-error">{error}</span>}
+        </div>
+    );
 };

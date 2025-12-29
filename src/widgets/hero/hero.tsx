@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
+import { Textarea } from '@/shared/ui/textarea';
 import './aquarelleButton.sass';
 import './hero.sass';
 import './fancy-btn.sass';
@@ -65,9 +66,8 @@ const Hero = () => {
             <Input label='Name1' placeholder="Введите имя" />
             <Input label='Name2' type='email' defaultValue='Qqqqq' placeholder="Введите email" />
 
+            <Textarea label='Name_3' placeholder="Введите сообщение" />
 
-            <label htmlFor="message">Сообщение</label>
-            <textarea id="message" placeholder="Введите сообщение"></textarea>
 
             <label htmlFor="country">Страна</label>
             <select id="country">
