@@ -5,6 +5,7 @@ import { Textarea } from '@/shared/ui/textarea';
 import { Select } from '@/shared/ui/select';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { Radio } from '@/shared/ui/radio';
+import { FormSection } from '@/shared/ui/form-section';
 import './aquarelleButton.sass';
 import './hero.sass';
 import './fancy-btn.sass';
@@ -30,10 +31,6 @@ const Hero = () => {
         </Button>
 
         <Button size="medium" variant="primary">
-            Купить
-        </Button>
-
-        <Button size="medium" variant="secondary">
             Купить
         </Button>
 
@@ -73,7 +70,6 @@ const Hero = () => {
 
             <Select
                 label="Name_4"
-                value='category'
                 options={[
                     { value: '', label: 'Выберите страну' },
                     { value: 'bg', label: 'Болгария' },
@@ -87,30 +83,23 @@ const Hero = () => {
             <Radio name="type" value="a" label="Вариант A" />
             <Radio name="type" value="b" label="Вариант B" />
 
-            <fieldset>
-                <legend>Выберите интересы:</legend>
-
-                <Input label='Name1' placeholder="Введите имя" />
-                <Input label='Name2' type='email' defaultValue='Qqqqq' placeholder="Введите email" />
-            </fieldset>
-
             <a href="https://example.com" target="_blank" rel="noopener noreferrer">
                 Перейти на Example
             </a>
 
-            <fieldset>
-                <legend>Выберите пол:</legend>
-                <label className="radio">
-                    <input type="radio" name="gender" value="male"/>
-                    Мужской
-                </label>
-                <label className="radio">
-                    <input type="radio" name="gender" value="female"/>
-                    Женский
-                </label>
-            </fieldset>
+            <FormSection title="Контактные данные">
+                <Input label="Имя" />
+                <Input label="Email" />
+            </FormSection>
 
-            <button type="submit"><span>Отправить</span></button>
+            <FormSection title="Выберите пол:">
+                <Radio name="gender" value="male" label="Мужской" />
+                <Radio name="gender" value="female" label="Женский" />
+            </FormSection>
+
+            <Button size="medium">
+                Отправить
+            </Button>
         </form>
 
 
