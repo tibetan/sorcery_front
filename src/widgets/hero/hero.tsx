@@ -47,8 +47,8 @@ const Hero = () => {
         </Button>
 
         <div style={{ marginTop: '40px' }}>
-            <h1 style={{ color: '#A8B47F' }}>Primary Heading</h1>
-            <h2 style={{ color: '#E3B97E' }}>Secondary Heading</h2>
+            <h1>Primary Heading</h1>
+            <h2>Secondary Heading</h2>
             <p>Основной текст на фоне бумаги.</p>
             <p style={{ color: '#8F9478' }}>Приглушённый текст для описаний.</p>
             <button style={{ backgroundColor: '#A8B47F', color: '#FFFFFF', padding: '10px' }}>Primary Button</button>
@@ -58,9 +58,6 @@ const Hero = () => {
         </div>
 
         <form className="form-example">
-            {/*<label htmlFor="name">Имя</label>*/}
-            {/*<input type="text" id="name" placeholder="Введите имя"/>*/}
-
             <p></p>
 
             <Input label='Name1' placeholder="Введите имя" />
