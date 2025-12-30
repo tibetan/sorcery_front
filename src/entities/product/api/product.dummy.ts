@@ -1,0 +1,40 @@
+import { ApiProduct } from "@/entities/product/model/types";
+
+export const products: ApiProduct[] = [
+    {
+        id: 1,
+        name: 'Test product 1',
+        slug: 'test-product-1',
+        price: 123,
+        short_description: 'Short description of Test product 1',
+        description: 'Description qqqqqqqqqq qqqqqqqqqqqq qqqqqqqqqqq of Test product 1',
+        additional_info: 'Additional info of Test product 1',
+        sku: 'SKU 1',
+        created_at: '2025-06-02T23:31:32.000000Z',
+        updated_at: '2025-06-02T23:31:32.000000Z',
+    },
+    {
+        id: 2,
+        name: 'Test product 2',
+        slug: 'test-product-2',
+        price: 234,
+        short_description: 'Short description of Test product 2',
+        description: 'Description wwwwwwwwww wwwwwwwwww wwwwwww of Test product 2',
+        additional_info: 'Additional info of Test product 2',
+        sku: 'SKU 2',
+        created_at: '2025-05-12T23:31:32.000000Z',
+        updated_at: '2025-06-02T23:31:32.000000Z',
+    },
+    {
+        id: 3,
+        name: 'Test product 3',
+        slug: 'test-product-3',
+        price: 345,
+        short_description: 'Short description of Test product 3',
+        description: 'Description eeeeeeee eeeeeeeeeee eeeeeee of Test product 3',
+        additional_info: 'Additional info of Test product 3',
+        sku: 'SKU 3',
+        created_at: '2025-04-30T23:31:32.000000Z',
+        updated_at: '2025-05-06T23:31:32.000000Z',
+    },
+];

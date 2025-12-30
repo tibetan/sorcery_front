@@ -1,0 +1,25 @@
+@use '@/app/styles/variables' as *
+@use '@/shared/styles/mixins/form-control' as *
+
+.textarea
+  display: flex
+  flex-direction: column
+  gap: 0.3rem
+  &--disabled
+    opacity: 0.6
+    .textarea-field
+      cursor: not-allowed
+  //&--error
+  //  .textarea-field
+  //    border-color: $color-error
+
+.textarea-field
+  @include form-control
+  resize: vertical
+  min-height: 5rem
+  &-label
+    font-size: 0.85rem
+    color: $color-muted
+  &-error
+    font-size: 0.75rem
+    color: $color-error

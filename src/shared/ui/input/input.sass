@@ -1,0 +1,18 @@
+@use '@/app/styles/variables' as *
+@use '@/shared/styles/mixins/form-control' as *
+
+.input
+  display: flex
+  flex-direction: column
+  gap: 0.3rem
+
+  &__label
+    font-size: 0.85rem
+    color: $color-muted
+
+  &__field
+    @include form-control
+
+  &__error
+    font-size: 0.75rem
+    color: $color-error

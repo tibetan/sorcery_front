@@ -1,0 +1,39 @@
+.fancy-btn
+  position: relative
+  padding: 12px 24px
+  font-size: 16px
+  background-color: #A8B47F
+  color: #FFFFFF
+  //border: 2px solid #333
+  //cursor: pointer
+  //overflow: hidden           // кляксы не выйдут за границы
+  transition: background-color 0.3s
+
+  &::before,
+  &::after
+    content: ''
+    position: absolute
+    width: 40px           // размер кляксы
+    height: 40px
+    background-repeat: no-repeat
+    background-size: contain
+    opacity: 0
+    transition: opacity 0.3s
+    pointer-events: none      // не мешают клику
+
+  &::before
+    top: 0
+    left: 0
+    background-image: url('assets/images/splash_001.svg')
+
+  &::after
+    bottom: 0
+    right: 0
+    background-image: url('assets/images/splash_002.svg')
+
+  &:hover
+    background-color: transparent // прозрачный фон
+    color: #6E7C55
+    &::before,
+    &::after
+      opacity: 1

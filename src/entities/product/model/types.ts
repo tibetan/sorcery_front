@@ -1,0 +1,27 @@
+export interface ApiProduct {
+    id: number;
+    name: string;
+    slug: string;
+    price: number;
+    short_description: string;
+    description: string;
+    additional_info: string;
+    sku: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Product {
+    id: number;
+    name: string;
+    slug?: string;
+    price: number;
+    shortDescription?: string;
+    description?: string;
+    additionalInfo?: string;
+    sku?: string;
+    createdAt?: string;
+    updatedAt?: string;
+}
+
+export type CreateProductDto = Omit<ApiProduct, 'id'>;

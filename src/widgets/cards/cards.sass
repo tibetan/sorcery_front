@@ -1,0 +1,44 @@
+//.img-water
+//  display: block
+//  width: 100%
+//  height: auto
+//  object-fit: cover
+//
+//  /* обязательно оба варианта для кроссбраузерности */
+//  -webkit-mask-image: url('./watercolor-frame_my_01.png')
+//  -webkit-mask-repeat: no-repeat
+//  -webkit-mask-size: cover
+//  -webkit-mask-position: center
+//
+//  mask-image: url('./watercolor-frame_my_01.png')
+//  mask-repeat: no-repeat
+//  mask-size: cover
+//  mask-position: center
+//
+//  background-color: transparent
+
+.img-water-wrap
+  width: 200px
+  height: 200px
+  overflow: hidden
+  display: block
+
+  /* маска на контейнере */
+  -webkit-mask-image: url('./assets/images/watercolor-frame_my_01.png')
+  -webkit-mask-repeat: no-repeat
+  -webkit-mask-size: cover
+  -webkit-mask-position: center
+  -webkit-mask-mode: alpha
+
+  mask-image: url('./assets/images/watercolor-frame_my_01.png')
+  mask-repeat: no-repeat
+  mask-size: cover
+  mask-position: center
+  mask-mode: alpha
+
+
+.img-water
+  width: 100%
+  height: 100%
+  object-fit: cover
+  display: block

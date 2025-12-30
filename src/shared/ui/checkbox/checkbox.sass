@@ -1,0 +1,28 @@
+@use '@/app/styles/variables' as *
+@use '@/shared/styles/mixins/form-control' as *
+
+.checkbox
+  display: inline-flex
+  align-items: center
+  gap: 0.5rem
+  cursor: pointer
+
+  &__input
+    @include form-control
+    @include check-control
+    border-radius: 0.3rem
+
+    &:checked::after
+      content: ''
+      position: absolute
+      top: 2px
+      left: 5px
+      width: 4px
+      height: 8px
+      border: solid $color-primary
+      border-width: 0 2px 2px 0
+      transform: rotate(45deg)
+
+  &__label
+    font-size: 0.9rem
+    color: $color-text

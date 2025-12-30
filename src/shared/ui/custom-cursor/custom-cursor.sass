@@ -1,0 +1,24 @@
+/* CustomCursor.css */
+body
+  cursor: none /* скрываем стандартный курсор */
+
+.cursor-wrapper
+  position: fixed
+  bottom: 30px
+  right: 15px
+  pointer-events: none
+  width: 100vw
+  height: 100vh
+
+.cursor
+  position: absolute
+  width: 40px
+  height: 40px
+  background-image: url('brush.png') /* твоя акварельная кисточка */
+  background-size: contain
+  background-repeat: no-repeat
+  transform: translate(-50%, -50%)
+  transition: transform 0.1s ease-out /* плавное следование */
+  mix-blend-mode: multiply /* акварельный эффект */
+  pointer-events: none
+  z-index: 9999
