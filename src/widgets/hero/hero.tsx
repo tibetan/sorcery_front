@@ -6,6 +6,7 @@ import { Select } from '@/shared/ui/select';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { Radio } from '@/shared/ui/radio';
 import { FormSection } from '@/shared/ui/form-section';
+import { Quote } from '@/shared/ui/quote';
 import './aquarelleButton.sass';
 import './hero.sass';
 import './fancy-btn.sass';
@@ -95,10 +96,16 @@ const Hero = () => {
             </FormSection>
 
             <Button size="medium">
-                Отправить
+                Send Отправить
             </Button>
         </form>
 
+        <Quote author="Claude Monet">
+            Color is my day-long obsession, joy and torment.
+        </Quote>
+        <Quote>
+            Каждая картина — это разговор с тишиной.
+        </Quote>
 
         <p>Основные</p>
         <ProjectColors color='#FBF7F2'/>
