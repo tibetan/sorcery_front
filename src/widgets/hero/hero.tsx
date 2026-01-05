@@ -81,9 +81,11 @@ const Hero = () => {
             <Radio name="type" value="a" label="Вариант A" />
             <Radio name="type" value="b" label="Вариант B" />
 
-            <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-                Перейти на Example
-            </a>
+            <div>
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                    Перейти на Example
+                </a>
+            </div>
 
             <FormSection title="Контактные данные">
                 <Input label="Имя" />
