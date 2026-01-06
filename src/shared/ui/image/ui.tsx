@@ -11,6 +11,7 @@ export const Image: React.FC<ImageProps> = ({
     ratio = IMAGE_RATIO.MAIN,
     className,
     mask = false,
+    ...rest
 }) => {
     const imgClass = classNames(
         'image',
@@ -19,5 +20,13 @@ export const Image: React.FC<ImageProps> = ({
         className
     );
 
-    return <img src={src} loading={loading} alt={alt} className={imgClass} />;
+    return (
+        <img
+            src={src}
+            alt={alt}
+            loading={loading}
+            className={imgClass}
+            {...rest}
+        />
+    );
 };
