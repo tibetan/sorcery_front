@@ -1,5 +1,5 @@
 import React from "react";
-import productImg from './assets/images/product.jpg';
+import productImg from '../../shared/assets/images/product.jpg';
 import './cards.sass';
 
 const WaterColorButton = () => {

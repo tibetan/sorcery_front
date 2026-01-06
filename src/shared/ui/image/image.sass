@@ -1,0 +1,29 @@
+.image
+  display: block
+  width: 100%
+  height: auto
+  object-fit: cover
+  border-radius: 0.5rem
+
+.image--4-5
+  aspect-ratio: 4 / 5
+  &.image--mask
+    -webkit-mask-image: url('./mask-4-5.png')
+    mask-image: url('./mask-4-5.png')
+
+.image--1-1
+  aspect-ratio: 1 / 1
+  &.image--mask
+    -webkit-mask-image: url('./mask-1-1.png')
+    mask-image: url('./mask-1-1.png')
+
+.image--3-2
+  aspect-ratio: 3 / 2
+  &.image--mask
+    -webkit-mask-image: url('./mask-3-2.png')
+    mask-image: url('./mask-3-2.png')
+
+.image--mask
+  mask-size: cover
+  mask-repeat: no-repeat
+  mask-position: center

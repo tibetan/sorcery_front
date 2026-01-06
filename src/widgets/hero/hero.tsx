@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { Textarea } from '@/shared/ui/textarea';
@@ -7,10 +8,14 @@ import { Checkbox } from '@/shared/ui/checkbox';
 import { Radio } from '@/shared/ui/radio';
 import { FormSection } from '@/shared/ui/form-section';
 import { Quote } from '@/shared/ui/quote';
+import { Image } from '@/shared/ui/image';
+
 import './aquarelleButton.sass';
 import './hero.sass';
 import './fancy-btn.sass';
 import './watercolor-btn.sass';
+
+import testImg from '@/shared/assets/images/product.jpg';
 
 interface ProjectColorsProps {
     color: string;
@@ -108,6 +113,36 @@ const Hero = () => {
         <Quote>
             Каждая картина — это разговор с тишиной.
         </Quote>
+
+        <div style={{width: "400px", height: "auto"}}>
+            <Image
+                src={testImg}
+                alt="Описание"
+                ratio="1:1"
+                mask
+                onClick={() => console.log('clicked')}
+            />
+        </div>
+
+        <div style={{width: "400px", height: "auto"}}>
+            <Image
+                src={testImg}
+                alt="Описание"
+                ratio="4:5"
+                mask
+                onClick={() => console.log('clicked')}
+            />
+        </div>
+
+        <div style={{width: "400px", height: "auto"}}>
+            <Image
+                src={testImg}
+                alt="Описание"
+                ratio="3:2"
+                mask
+                onClick={() => console.log('clicked')}
+            />
+        </div>
 
         <p>Основные</p>
         <ProjectColors color='#FBF7F2'/>

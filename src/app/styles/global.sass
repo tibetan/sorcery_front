@@ -105,12 +105,6 @@ textarea::placeholder
 button, input, textarea, select
   outline: none
 
-// ---------- Изображения ----------
-img
-  display: block
-  max-width: 100%
-  border-radius: 0.25rem
-
 // ---------- Галерея ----------
 .gallery
   display: grid
@@ -123,11 +117,11 @@ img
   position: relative
   overflow: hidden
   border-radius: 1rem
-  box-shadow: 0 4px 12px $color-shadow
+  //box-shadow: 0 4px 12px $color-shadow
   transition: transform 0.3s ease
   @include watercolor-bg($color-accent, 0.12, 18px)
-  &:hover
-    transform: translateY(-2px)
+  //&:hover
+  //  transform: translateY(-2px)
 
   img
     display: block
