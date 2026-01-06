@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+import { Button } from '@/shared/ui/button';
 import { Book } from '@/entities/book/model/types';
 
 import './book-list-item.sass';
@@ -21,10 +21,10 @@ const BookListItem = ({ book, onAddToCart }: BookListItemProps) => {
         <div className="book-author">{author}</div>
         <div className="book-price">${price}</div>
         <Button
-          variant="contained"
-          color="primary"
-          onClick={() => onAddToCart(book)}
-          className="btn btn-info add-to-cart">
+            size="medium"
+            variant="primary"
+            onClick={() => onAddToCart(book)}
+        >
           Add to cart
         </Button>
       </div>

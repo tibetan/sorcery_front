@@ -11,8 +11,6 @@ import Index from './app/providers/error-boundary';
 
 import { store } from './app/providers/store';
 
-// import { ThemeProvider } from '@mui/material/styles';
-
 const root = createRoot(document.getElementById('root')!);
 root.render(
     <Provider store={store}>

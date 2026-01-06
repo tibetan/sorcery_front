@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+import { Button } from '@/shared/ui/button';
 import { useAppSelector, useAppDispatch } from '@/app/providers/store/hooks';
 import { useGetBooksQuery } from '@/entities/book/api/book-api';
 import { addItem, removeItem, removeItemCompletely } from '@/entities/cart/model/slice';
@@ -45,23 +45,23 @@ const ShoppingCartTable: React.FC = () => {
                 <td>${total}</td>
                 <td>
                     <Button
-                        variant="outlined"
+                        size="medium"
+                        variant="primary"
                         onClick={() => handleDelete(id)}
-                        className="btn btn-outline-danger btn-sm float-right"
                     >
                         Delete
                     </Button>
                     <Button
-                        variant="outlined"
+                        size="medium"
+                        variant="secondary"
                         onClick={() => handleIncrease(id)}
-                        className="btn btn-outline-success btn-sm float-right"
                     >
                         +
                     </Button>
                     <Button
-                        variant="outlined"
+                        size="medium"
+                        variant="secondary"
                         onClick={() => handleDecrease(id)}
-                        className="btn btn-outline-warning btn-sm float-right"
                     >
                         -
                     </Button>
