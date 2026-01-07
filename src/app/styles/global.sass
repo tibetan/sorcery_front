@@ -105,6 +105,10 @@ textarea::placeholder
 button, input, textarea, select
   outline: none
 
+// ---------- Изображения ----------
+img
+  max-width: 100%
+
 // ---------- Галерея ----------
 .gallery
   display: grid
@@ -113,40 +117,40 @@ button, input, textarea, select
   padding: 1rem
 
 // ---------- Карточки ----------
-.card
-  position: relative
-  overflow: hidden
-  border-radius: 1rem
-  //box-shadow: 0 4px 12px $color-shadow
-  transition: transform 0.3s ease
-  @include watercolor-bg($color-accent, 0.12, 18px)
-  //&:hover
-  //  transform: translateY(-2px)
-
-  img
-    display: block
-    width: 100%
-    height: auto
-    object-fit: cover
-
-    // Маска для акварельного края
-    -webkit-mask-image: url('/src/widgets/hero/assets/images/watercolor-frame_my_01.png')
-    mask-image: url('/src/widgets/hero/assets/images/watercolor-frame_my_01.png')
-    mask-size: cover
-    mask-repeat: no-repeat
-    mask-position: center
+//.card
+//  position: relative
+//  overflow: hidden
+//  border-radius: 1rem
+//  //box-shadow: 0 4px 12px $color-shadow
+//  transition: transform 0.3s ease
+//  @include watercolor-bg($color-accent, 0.12, 18px)
+//  //&:hover
+//  //  transform: translateY(-2px)
+//
+//  img
+//    display: block
+//    width: 100%
+//    height: auto
+//    object-fit: cover
+//
+//    // Маска для акварельного края
+//    -webkit-mask-image: url('/src/widgets/hero/assets/images/watercolor-frame_my_01.png')
+//    mask-image: url('/src/widgets/hero/assets/images/watercolor-frame_my_01.png')
+//    mask-size: cover
+//    mask-repeat: no-repeat
+//    mask-position: center
 
 // ---------- Подписи к картинкам ----------
-.card .caption
-  position: absolute
-  bottom: 0.5rem
-  left: 0.5rem
-  padding: 0.3rem 0.5rem
-  background-color: rgba($color-bg, 0.6)
-  color: $color-text
-  border-radius: 0.4rem
-  font-size: 0.85rem
-  z-index: 2
+//.card .caption
+//  position: absolute
+//  bottom: 0.5rem
+//  left: 0.5rem
+//  padding: 0.3rem 0.5rem
+//  background-color: rgba($color-bg, 0.6)
+//  color: $color-text
+//  border-radius: 0.4rem
+//  font-size: 0.85rem
+//  z-index: 2
 
 // ---------- Сноски / маленький текст ----------
 small, .note

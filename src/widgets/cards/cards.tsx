@@ -1,4 +1,8 @@
 import React from "react";
+
+import { Card } from '@/shared/ui/card';
+import { Image } from '@/shared/ui/image';
+
 import productImg from '../../shared/assets/images/product.jpg';
 import './cards.sass';
 
@@ -14,35 +18,39 @@ const WaterColorButton = () => {
 
 const Cards:React.FC = () => (
     <div className='cards-page'>
-        <div className="card">
-            <img src={productImg} alt="product"/>
+        <Card>
+            <Image src={productImg} alt="product" ratio="3:2" />
             <h3>Product name</h3>
             <p>Description text...</p>
             <WaterColorButton/>
-        </div>
+        </Card>
 
-        <div className="card">
-            <img src={productImg} alt="product"/>
+        <Card>
+            <Image src={productImg} ratio="4:5" mask />
             <h3>John Smith</h3>
             <p>Frontend developer</p>
-        </div>
+        </Card>
 
-        <div className="card">
+        <Card>
             <h2>How to bake sourdough bread</h2>
             <p>Lorem ipsum dolor sit amet...</p>
             <a href="#">Read more</a>
-        </div>
+        </Card>
 
-        <section className="card">
+        <Card>
             <h2>About project</h2>
             <p>This app allows you to...</p>
-        </section>
+        </Card>
 
-        <div className="card">
-            <span className="icon">⚡️</span>
+        <Card hoverable={false}>
+            <p>Статичный блок</p>
+        </Card>
+
+        <Card>
+            <span className="icon">⚡</span>
             <h3>Performance</h3>
             <p>Fast and optimized.</p>
-        </div>
+        </Card>
 
         <div className="gallery">
             <div className="card">

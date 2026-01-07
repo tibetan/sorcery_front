@@ -1,0 +1,24 @@
+@use '@/app/styles/variables' as *
+@use '@/app/styles/mixins' as *
+
+.card
+  position: relative
+  overflow: hidden
+  border-radius: 1rem
+  background-color: $color-surface
+  box-shadow: 0 4px 12px $color-shadow
+  transition: transform 0.25s ease, box-shadow 0.25s ease
+
+.card--hoverable
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06)
+
+.card--default
+  @include watercolor-bg($color-accent, 0.12, 18px)
+
+.card--surface
+  background-color: $color-surface
+
+.card--accent
+  background-color: rgba($color-accent, 0.15)
