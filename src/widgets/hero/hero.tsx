@@ -114,7 +114,7 @@ const Hero = () => {
             Каждая картина — это разговор с тишиной.
         </Quote>
 
-        <div style={{width: "400px", height: "auto"}}>
+        <div style={{width: "300px", height: "auto"}}>
             <Image
                 src={testImg}
                 alt="Описание"
@@ -124,7 +124,7 @@ const Hero = () => {
             />
         </div>
 
-        <div style={{width: "400px", height: "auto"}}>
+        <div style={{width: "300px", height: "auto"}}>
             <Image
                 src={testImg}
                 alt="Описание"
@@ -134,7 +134,7 @@ const Hero = () => {
             />
         </div>
 
-        <div style={{width: "400px", height: "auto"}}>
+        <div style={{width: "300px", height: "auto"}}>
             <Image
                 src={testImg}
                 alt="Описание"
