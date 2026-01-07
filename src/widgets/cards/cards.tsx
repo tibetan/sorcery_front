@@ -2,6 +2,7 @@ import React from "react";
 
 import { Card } from '@/shared/ui/card';
 import { Image } from '@/shared/ui/image';
+import { Caption } from '@/shared/ui/caption';
 
 import productImg from '../../shared/assets/images/product.jpg';
 import './cards.sass';
@@ -18,10 +19,18 @@ const WaterColorButton = () => {
 
 const Cards:React.FC = () => (
     <div className='cards-page'>
-        <Card>
+        <Card hoverable={false}>
             <Image src={productImg} alt="product" ratio="3:2" />
             <h3>Product name</h3>
             <p>Description text...</p>
+            <WaterColorButton/>
+        </Card>
+
+        <Card>
+            <Image src={productImg} alt="product" ratio="3:2" mask />
+            <h3>Product name</h3>
+            <p>Description text...</p>
+            <Caption>Акварель №1</Caption>
             <WaterColorButton/>
         </Card>
 
