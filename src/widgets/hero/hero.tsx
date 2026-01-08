@@ -13,6 +13,7 @@ import { Card } from '@/shared/ui/card';
 import { Caption } from "@/shared/ui/caption";
 import { Grid } from '@/shared/ui/layout/grid';
 import { Masonry } from '@/shared/ui/layout/masonry';
+import { Text } from '@/shared/ui/text';
 
 import './aquarelleButton.sass';
 import './hero.sass';
@@ -184,6 +185,32 @@ const Hero = () => {
                 onClick={() => console.log('clicked')}
             />
         </div>
+
+        <Text as='div' show>
+            Это дефолтный текст.
+        </Text>
+
+        <Text variant="tooltip" show>
+            Это подсказка для кнопки
+        </Text>
+
+        <Text variant="caption">Подпись к изображению</Text>
+
+        <Text variant="quote" style={{lineHeight:1.7}}>
+            «Жизнь — это как акварель: главное, чтобы мазки были мягкими и гармоничными»
+        </Text>
+
+        <Text variant="annotation" show={false}>
+            Аннотация временно скрыта
+        </Text>
+
+        <Text as='p' variant="note">
+            Сноска к тексту
+        </Text>
+
+        <Text as='div' variant="quote">
+            «Жизнь — как акварель: мягко, гармонично»
+        </Text>
 
         <p>Основные</p>
         <ProjectColors color='#FBF7F2'/>
