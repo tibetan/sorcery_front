@@ -9,13 +9,20 @@ import { Radio } from '@/shared/ui/radio';
 import { FormSection } from '@/shared/ui/form-section';
 import { Quote } from '@/shared/ui/quote';
 import { Image } from '@/shared/ui/image';
+import { Card } from '@/shared/ui/card';
+import { Caption } from "@/shared/ui/caption";
+import { Grid } from '@/shared/ui/layout/grid';
+import { Masonry } from '@/shared/ui/layout/masonry';
 
 import './aquarelleButton.sass';
 import './hero.sass';
 import './fancy-btn.sass';
 import './watercolor-btn.sass';
 
-import testImg from '@/shared/assets/images/product.jpg';
+import productImg from "@/shared/assets/images/product.jpg";
+import productImg2 from "@/shared/assets/images/product2.jpg";
+import productImg3 from "@/shared/assets/images/product3.jpeg";
+import productImg4 from "@/shared/assets/images/product4.jpg";
 
 interface ProjectColorsProps {
     color: string;
@@ -32,6 +39,40 @@ const ProjectColors:React.FC<ProjectColorsProps> = ({ color }) => {
 const Hero = () => {
   return (
     <div className='hero'>
+        <Grid columns={4} gap="1.5rem">
+            <Card>
+                <Image src={productImg} alt="product" ratio="3:2" />
+                <h3>Product name 1</h3>
+                <p>Description text...</p>
+            </Card>
+            <Card>
+                <Image src={productImg2} alt="product" ratio="3:2" />
+                <h3>Product name 2</h3>
+                <Caption>Акварель №2</Caption>
+            </Card>
+            <Card>
+                <Image src={productImg3} alt="product" ratio="3:2" />
+                <h3>Product name 3</h3>
+                <p>Description text...</p>
+            </Card>
+            <Card>
+                <Image src={productImg4} alt="product" ratio="3:2" />
+                <h3>Product name 4</h3>
+                <p>Description text...</p>
+            </Card>
+        </Grid>
+
+        <Masonry columns={4} gap="1rem">
+            <Image src={productImg} alt="Описание 1" mask />
+            <Image src={productImg2} alt="Описание 2" mask />
+            <Image src={productImg3} alt="Описание 3" mask />
+            <Image src={productImg4} alt="Описание 3" mask/>
+            <Image src={productImg4} alt="Описание 3" mask />
+            <Image src={productImg} alt="Описание 1" mask/>
+            <Image src={productImg3} alt="Описание 3" mask/>
+            <Image src={productImg2} alt="Описание 2" mask/>
+        </Masonry>
+
         <Button size="large" variant="primary">
             Купить
         </Button>
@@ -116,7 +157,7 @@ const Hero = () => {
 
         <div style={{width: "300px", height: "auto"}}>
             <Image
-                src={testImg}
+                src={productImg}
                 alt="Описание"
                 ratio="1:1"
                 mask
@@ -126,7 +167,7 @@ const Hero = () => {
 
         <div style={{width: "300px", height: "auto"}}>
             <Image
-                src={testImg}
+                src={productImg}
                 alt="Описание"
                 ratio="4:5"
                 mask
@@ -136,7 +177,7 @@ const Hero = () => {
 
         <div style={{width: "300px", height: "auto"}}>
             <Image
-                src={testImg}
+                src={productImg}
                 alt="Описание"
                 ratio="3:2"
                 mask

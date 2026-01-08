@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import { IMAGE_RATIO } from './model';
 import type { ImageProps } from './model';
 import './image.sass';
 
@@ -8,14 +7,14 @@ export const Image: React.FC<ImageProps> = ({
     src,
     alt = '',
     loading='lazy',
-    ratio = IMAGE_RATIO.MAIN,
+    ratio = null,
     className,
     mask = false,
     ...rest
 }) => {
     const imgClass = classNames(
         'image',
-        `image--${ratio.replace(':', '-')}`,
+        ratio ? `image--${ratio.replace(':', '-')}` : 'image--default',
         { 'image--mask': mask },
         className
     );

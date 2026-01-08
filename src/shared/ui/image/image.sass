@@ -5,6 +5,11 @@
   object-fit: cover
   border-radius: 0.5rem
 
+.image--default
+  &.image--mask
+    -webkit-mask-image: url('./mask-default.png')
+    mask-image: url('./mask-default.png')
+
 .image--4-5
   aspect-ratio: 4 / 5
   &.image--mask
