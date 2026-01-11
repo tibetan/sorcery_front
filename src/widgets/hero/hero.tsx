@@ -102,7 +102,7 @@ const Hero = () => {
             <button style={{ backgroundColor: '#A8B47F', color: '#FFFFFF', padding: '10px' }}>Primary Button</button>
             <button style={{ backgroundColor: '#A8B47F', color: '#6E7C55', padding: '10px' }}>Primary Button</button>
             <button style={{ backgroundColor: '#E3B97E', color: '#FFFFFF', padding: '10px' }}>Secondary Button</button>
-            <div style={{ width: '50px', height: '5px', backgroundColor: '#D9A8A0', marginTop: '10px' }}></div>
+            <div style={{ width: '50px', height: '5px', backgroundColor: '#F2C0B0', marginTop: '10px' }}></div>
         </div>
 
         <form className="form-example">
@@ -219,7 +219,7 @@ const Hero = () => {
         <p>Акценты</p>
         <ProjectColors color='#A8B47F'/>
         <ProjectColors color='#E3B97E'/>
-        <ProjectColors color='#D9A8A0'/>
+        <ProjectColors color='#F2C0B0'/>
 
         <p>Текст</p>
         <ProjectColors color='#6E7C55'/>
